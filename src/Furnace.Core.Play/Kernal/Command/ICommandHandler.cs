@@ -1,4 +1,4 @@
-﻿namespace Furnace.Core.Play.Kernal
+﻿namespace Furnace.Core.Play.Kernal.Command
 {
     public interface ICommandHandler<in TCommand>
     {

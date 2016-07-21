@@ -1,4 +1,6 @@
 ﻿using Furnace.Core.Play;
+using Furnace.Core.Play.Kernal.Middleware;
+using Furnace.Core.Play.Kernal.Module;
 using Furnace.Core.Requet.Play;
 using SimpleInjector;
 

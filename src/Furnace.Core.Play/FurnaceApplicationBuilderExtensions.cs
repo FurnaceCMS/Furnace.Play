@@ -4,6 +4,8 @@ using System.Linq;
 using System.Reflection;
 using Furnace.Core.Play.GraphTheory.Algorithms;
 using Furnace.Core.Play.GraphTheory.Graphs;
+using Furnace.Core.Play.Kernal.Middleware;
+using Furnace.Core.Play.Kernal.Module;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyModel;
 using SimpleInjector;

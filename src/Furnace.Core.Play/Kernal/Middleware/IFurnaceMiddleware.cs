@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Furnace.Core.Play
+namespace Furnace.Core.Play.Kernal.Middleware
 {
     public interface IFurnaceMiddleware
     {
