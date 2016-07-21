@@ -3235,8 +3235,11 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
+          "Microsoft.AspNetCore.Http.Abstractions": "1.0.0",
+          "Microsoft.AspNetCore.Owin": "1.0.0",
           "Microsoft.NETCore.App": "1.0.0",
-          "SimpleInjector": "3.2.0"
+          "SimpleInjector": "3.2.0",
+          "SimpleInjector.Integration.AspNetCore.Mvc": "3.2.3"
         },
         "compile": {
           "netcoreapp1.0/Furnace.Core.Play.dll": {}
