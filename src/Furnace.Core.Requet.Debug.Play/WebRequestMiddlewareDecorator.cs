@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Furnace.Core.Play;
 
@@ -13,8 +12,8 @@ namespace Furnace.Core.Requet.Debug.Play
 
         public override Task Invoke(IDictionary<string, object> environment)
         {
-            Console.WriteLine("WebRequestMiddlewareDecorator");
-
+            var renderArray = new List<string> {"Hello from WebRequestMiddlewareDecorator "};
+            environment.Add("RenderArray", renderArray);
             return Decoratee.Invoke(environment);
         }
     }

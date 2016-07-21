@@ -108,9 +108,10 @@ namespace Furnace.Core.Owin.Play
 
         private static IEnumerable<Type> GetFurnaceMiddleware(IList<Assembly> assemblies)
         {
-            var furnaceMiddleware =  from t in assemblies
+            var furnaceMiddleware = from t in assemblies
                 from d in t.DefinedTypes
                 where d.ImplementedInterfaces.Contains(typeof(IFurnaceMiddleware))
+                      && d.BaseType != typeof(FurnaceMiddlewareDecorator)
                 select d.UnderlyingSystemType;
 
             return furnaceMiddleware as IList<Type> ?? furnaceMiddleware.ToList();
