@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Furnace.Core.Play;
 using Furnace.Core.Play.Kernal.Middleware;
 
 namespace Furnace.Core.Requet.Debug.Play

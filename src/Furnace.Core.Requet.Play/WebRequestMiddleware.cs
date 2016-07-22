@@ -3,9 +3,8 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-using Furnace.Core.Play;
-using Furnace.Core.Play.Kernal;
 using Furnace.Core.Play.Kernal.Middleware;
+using Furnace.Core.Play.Kernal.Query;
 
 namespace Furnace.Core.Requet.Play
 {
