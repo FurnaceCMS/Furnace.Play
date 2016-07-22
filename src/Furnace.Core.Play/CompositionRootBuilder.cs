@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Furnace.Core.Play.Kernal.CompositionRoot.FurnaceModuleLibraries.CompileLibraries;
 using Furnace.Core.Play.Kernal.Middleware;
 using Furnace.Core.Play.Kernal.Module;
+using Microsoft.Extensions.DependencyModel;
 using SimpleInjector;
 using SimpleInjector.Extensions.ExecutionContextScoping;
 
-namespace Furnace.Core.Play.Kernal.CompositionRoot
+namespace Furnace.Core.Play
 {
     public class CompositionRootBuilder
     {
@@ -17,25 +17,20 @@ namespace Furnace.Core.Play.Kernal.CompositionRoot
             var container = new Container();
             container.Options.DefaultScopedLifestyle = new ExecutionContextScopeLifestyle();
 
-            var compileLibrariesQueryHandler = new CompileLibrariesQueryHandler();
-
-            var moduleAssemblies = compileLibrariesQueryHandler
-                .Handle(library => library.Dependencies.Any(x => x.Name == "Furnace.Core.Play"))
-                .CompileLibraries
-                .Select(x => Assembly.Load(new AssemblyName(x.Name)))
-                .ToList();
+            var moduleAssemblies = GetModuleAssemblies();
 
             ConfigureContainers(moduleAssemblies, container);
-
             RegisterMiddleware(moduleAssemblies, container);
 
             return container;
         }
 
-        private static void RegisterMiddleware(IEnumerable<Assembly> moduleAssemblies, Container container)
+        private static List<Assembly> GetModuleAssemblies()
         {
-            var middleware = GetFurnaceMiddleware(moduleAssemblies);
-            container.RegisterCollection<IFurnaceMiddleware>(middleware);
+            return DependencyContext.Default.CompileLibraries
+                .Where(library => library.Dependencies.Any(x => x.Name == "Furnace.Core.Play"))
+                .Select(x => Assembly.Load(new AssemblyName(x.Name)))
+                .ToList();
         }
 
         private static void ConfigureContainers(IEnumerable<Assembly> moduleAssemblies, Container container)
@@ -46,6 +41,12 @@ namespace Furnace.Core.Play.Kernal.CompositionRoot
                 var instance = (IFurnaceModule) Activator.CreateInstance(module);
                 instance.ConfigureContainer(container);
             }
+        }
+
+        private static void RegisterMiddleware(IEnumerable<Assembly> moduleAssemblies, Container container)
+        {
+            var middleware = GetFurnaceMiddleware(moduleAssemblies);
+            container.RegisterCollection<IFurnaceMiddleware>(middleware);
         }
 
         private static IEnumerable<Type> GetFurnaceMiddleware(IEnumerable<Assembly> assemblies)

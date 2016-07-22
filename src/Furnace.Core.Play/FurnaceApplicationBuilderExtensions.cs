@@ -1,5 +1,4 @@
 ﻿using System;
-using Furnace.Core.Play.Kernal.CompositionRoot;
 using Furnace.Core.Play.Kernal.Middleware;
 using Microsoft.AspNetCore.Builder;
 using SimpleInjector.Extensions.ExecutionContextScoping;
