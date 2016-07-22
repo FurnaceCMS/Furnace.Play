@@ -19,39 +19,46 @@ namespace Furnace.Core.Play.Kernal.CompositionRoot
 
             var compileLibrariesQueryHandler = new CompileLibrariesQueryHandler();
 
-            var moduleLibraries = compileLibrariesQueryHandler.Handle(library => library.Dependencies.Any(x => x.Name == "Furnace.Core.Play"));
-
-            var moduleAssemblies = moduleLibraries.CompileLibraries
+            var moduleAssemblies = compileLibrariesQueryHandler
+                .Handle(library => library.Dependencies.Any(x => x.Name == "Furnace.Core.Play"))
+                .CompileLibraries
                 .Select(x => Assembly.Load(new AssemblyName(x.Name)))
                 .ToList();
 
-            var modules = GetFurnaceModules(moduleAssemblies);
-            foreach (var module in modules)
-            {
-                var instance = (IFurnaceModule)Activator.CreateInstance(module);
-                instance.ConfigureContainer(container);
-            }
+            ConfigureContainers(moduleAssemblies, container);
 
-            var middleware = GetFurnaceMiddleware(moduleAssemblies);
-            container.RegisterCollection<IFurnaceMiddleware>(middleware);
+            RegisterMiddleware(moduleAssemblies, container);
 
             return container;
         }
 
-        private static IEnumerable<Type> GetFurnaceModules(IEnumerable<Assembly> assemblies)
+        private static void RegisterMiddleware(IEnumerable<Assembly> moduleAssemblies, Container container)
         {
-            return from t in assemblies
-                from d in t.DefinedTypes
-                where d.ImplementedInterfaces.Contains(typeof(IFurnaceModule))
-                select d.UnderlyingSystemType;
+            var middleware = GetFurnaceMiddleware(moduleAssemblies);
+            container.RegisterCollection<IFurnaceMiddleware>(middleware);
+        }
+
+        private static void ConfigureContainers(IEnumerable<Assembly> moduleAssemblies, Container container)
+        {
+            var modules = GetFurnaceModules(moduleAssemblies);
+            foreach (var module in modules)
+            {
+                var instance = (IFurnaceModule) Activator.CreateInstance(module);
+                instance.ConfigureContainer(container);
+            }
         }
 
         private static IEnumerable<Type> GetFurnaceMiddleware(IEnumerable<Assembly> assemblies)
         {
-            return from t in assemblies
-                from d in t.DefinedTypes
-                where d.ImplementedInterfaces.Contains(typeof(IFurnaceMiddleware))
-                      && d.BaseType != typeof(FurnaceMiddlewareDecorator)
+            //Don't get decreates as these should be regestered byt the module
+            return GetFurnaceModules(assemblies).Where(t => t.DeclaringType != typeof(FurnaceMiddlewareDecorator));
+        }
+
+        private static IEnumerable<Type> GetFurnaceModules(IEnumerable<Assembly> assemblies)
+        {
+            return from a in assemblies
+                from d in a.DefinedTypes
+                where d.ImplementedInterfaces.Contains(typeof(IFurnaceModule))
                 select d.UnderlyingSystemType;
         }
     }
