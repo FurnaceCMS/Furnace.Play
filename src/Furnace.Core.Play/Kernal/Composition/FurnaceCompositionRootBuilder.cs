@@ -8,21 +8,28 @@ using Microsoft.Extensions.DependencyModel;
 using SimpleInjector;
 using SimpleInjector.Extensions.ExecutionContextScoping;
 
-namespace Furnace.Core.Play
+namespace Furnace.Core.Play.Kernal.Composition
 {
-    public class CompositionRootBuilder
+    public class FurnaceCompositionRootBuilder : IFurnaceCompositionRootBuilder
     {
-        public static Container Build()
-        {
-            var container = new Container();
-            container.Options.DefaultScopedLifestyle = new ExecutionContextScopeLifestyle();
 
+        public Container Container { get; }
+
+        public FurnaceCompositionRootBuilder()
+        {
+            Container = new Container();
+            Container.Options.DefaultScopedLifestyle = new ExecutionContextScopeLifestyle();
+        }
+
+        public ICompositionRoot Build()
+        {
+           
             var moduleAssemblies = GetModuleAssemblies().ToList();
 
-            ConfigureContainers(moduleAssemblies, container);
-            RegisterMiddleware(moduleAssemblies, container);
-
-            return container;
+            ConfigureContainers(moduleAssemblies, Container);
+            RegisterMiddleware(moduleAssemblies, Container);
+            
+            return new CompositionRoot(Container.GetAllInstances<IFurnaceMiddleware>().OrderBy(mw => mw.Weight));
         }
 
         private static IEnumerable<Assembly> GetModuleAssemblies()

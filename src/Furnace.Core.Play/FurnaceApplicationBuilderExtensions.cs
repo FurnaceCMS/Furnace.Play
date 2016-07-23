@@ -1,8 +1,7 @@
 ﻿using System;
-using Furnace.Core.Play.Kernal.Middleware;
+using Furnace.Core.Play.Kernal.Composition;
 using Microsoft.AspNetCore.Builder;
 using SimpleInjector.Extensions.ExecutionContextScoping;
-using System.Linq;
 
 namespace Furnace.Core.Play
 {
@@ -13,14 +12,19 @@ namespace Furnace.Core.Play
             if (app == null)
                 throw new ArgumentNullException(nameof(app));
 
-            var container = CompositionRootBuilder.Build();
-            var furnaceMiddleware = container.GetAllInstances<IFurnaceMiddleware>().OrderBy(mw => mw.Weight);
+            var compositionRootBuilder =
+                app.ApplicationServices.GetService(typeof(IFurnaceCompositionRootBuilder)) as IFurnaceCompositionRootBuilder;
+
+            if(compositionRootBuilder == null)
+                throw new ArgumentNullException(nameof(compositionRootBuilder));
+
+            var compositionRoot = compositionRootBuilder.Build();
 
             return app.UseOwin(pipeline =>
             {
-                using (container.BeginExecutionContextScope())
+                using (compositionRootBuilder.Container.BeginExecutionContextScope())
                 {
-                    foreach (var mw in furnaceMiddleware)
+                    foreach (var mw in compositionRoot.FurnaceMiddleware)
                     {
                         pipeline(next => mw.Invoke);
                     }
