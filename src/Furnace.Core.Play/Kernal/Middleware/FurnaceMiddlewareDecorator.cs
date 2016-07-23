@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Furnace.Core.Play.Kernal.Middleware
 {
-    public abstract class FurnaceMiddlewareDecorator : IFurnaceMiddleware
+    public abstract class FurnaceMiddlewareDecorator : IFurnaceMiddleware, IFurnaceMiddlewareDecorator
     {
         public int Weight => Decoratee.Weight;
 
