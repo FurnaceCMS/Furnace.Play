@@ -2,7 +2,7 @@
 
 namespace Furnace.Core.Data.Play.Factories.Metas.Typed
 {
-    public interface ITypedMetaFactory<TMetaType>
+    public interface ITypedMetaFactory<TMetaType> : IMetaFactory
     {
         ITypedMeta<TMetaType> CreateMeta(string name, TMetaType value);
     }

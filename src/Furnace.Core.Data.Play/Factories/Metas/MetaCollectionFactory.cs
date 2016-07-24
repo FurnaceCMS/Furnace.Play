@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Furnace.Core.Data.Play.Factories.Metas.Typed;
 using Furnace.Core.Data.Play.Metas;
+using System.Linq;
 
 namespace Furnace.Core.Data.Play.Factories.Metas
 {
@@ -16,13 +18,40 @@ namespace Furnace.Core.Data.Play.Factories.Metas
 
         private void PopulateMetaFactories()
         {
-            //TODO:: change this to use reflection to build collection from interface
-            MetaFactories = new Dictionary<Type, IMetaFactory>
+            BuildMetaFactoriesDictionary();
+        }
+
+        private void BuildMetaFactoriesDictionary()
+        {
+            MetaFactories = new Dictionary<Type, IMetaFactory>();
+
+            var interfaceType = typeof(IMetaFactory);
+            var metaFactoryTypes = GetMetaFactoryTypes(interfaceType);
+
+            foreach (var metaFactoryType in metaFactoryTypes)
             {
-                {typeof(string), new StringMetaFactory()},
-                {typeof(int), new IntMetaFactory()},
-                {typeof(DateTime), new DateTimeMetaFactory()}
-            };
+                var metaFactory = Activator.CreateInstance(metaFactoryType) as IMetaFactory;
+                if (metaFactory == null)
+                    continue;
+
+                MetaFactories.Add(metaFactory.FactoryType, metaFactory);
+            }
+        }
+
+        private IEnumerable<Type> GetMetaFactoryTypes(Type interfaceType)
+        {
+            var metaFactoryTypes = typeof(MetaCollectionFactory).GetTypeInfo()
+                .Assembly
+                .GetTypes()
+                .Where(p => interfaceType.IsAssignableFrom(p)
+                            && !DoesTypeHaveAttribute(p, TypeAttributes.Abstract)
+                            && !DoesTypeHaveAttribute(p, TypeAttributes.Interface));
+            return metaFactoryTypes;
+        }
+
+        private bool DoesTypeHaveAttribute(Type type, TypeAttributes attribute)
+        {
+            return (type.GetTypeInfo().Attributes & attribute) != 0;
         }
 
         public IMetaCollection GetMetaCollection(Guid id)

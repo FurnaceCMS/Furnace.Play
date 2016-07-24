@@ -5,6 +5,8 @@ namespace Furnace.Core.Data.Play.Factories.Metas.Typed
 {
     public class DateTimeMetaFactory : MetaFactory, ITypedMetaFactory<DateTime>
     {
+        public override Type FactoryType => typeof(DateTime);
+
         public ITypedMeta<DateTime> CreateMeta(string name, DateTime value)
         {
             return new DateTimeMeta()
