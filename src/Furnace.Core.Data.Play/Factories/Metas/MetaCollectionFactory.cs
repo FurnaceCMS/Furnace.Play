@@ -16,10 +16,12 @@ namespace Furnace.Core.Data.Play.Factories.Metas
 
         private void PopulateMetaFactories()
         {
+            //TODO:: change this to use reflection to build collection from interface
             MetaFactories = new Dictionary<Type, IMetaFactory>
             {
                 {typeof(string), new StringMetaFactory()},
-                {typeof(int), new IntMetaFactory()}
+                {typeof(int), new IntMetaFactory()},
+                {typeof(DateTime), new DateTimeMetaFactory()}
             };
         }
 
@@ -38,6 +40,8 @@ namespace Furnace.Core.Data.Play.Factories.Metas
                 Name = name
             };
 
+
+            //TODO:: Get rid of this horrible loop, Polymorphism FTW!
             foreach (var dataItem in data)
             {
                 if (!MetaFactories.ContainsKey(dataItem.Value.GetType()))
@@ -50,6 +54,7 @@ namespace Furnace.Core.Data.Play.Factories.Metas
                         continue;
 
                     metaCollection.Metas.Add(stringMetaFactory.CreateMeta(dataItem.Key, dataItem.Value));
+                    continue;
                 }
 
                 if (dataItem.Value is int)
@@ -59,6 +64,17 @@ namespace Furnace.Core.Data.Play.Factories.Metas
                         continue;
 
                     metaCollection.Metas.Add(intMetaFactory.CreateMeta(dataItem.Key, dataItem.Value));
+                    continue;
+                }
+
+                if (dataItem.Value is DateTime)
+                {
+                    var dateTimeMetaFactory = MetaFactories[dataItem.Value.GetType()] as DateTimeMetaFactory;
+                    if (dateTimeMetaFactory == null)
+                        continue;
+
+                    metaCollection.Metas.Add(dateTimeMetaFactory.CreateMeta(dataItem.Key, dataItem.Value));
+                    continue;
                 }
             }
 
