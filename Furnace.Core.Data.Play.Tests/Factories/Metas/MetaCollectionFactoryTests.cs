@@ -95,7 +95,7 @@ namespace Furnace.Core.Data.Play.Tests.Factories.Metas
             {
                 {MetaName1, 1},
                 {MetaName2, "2"},
-                {MetaName3, 3},
+                {MetaName3, DateTime.Now},
             };
             var stringMetaFactory = new MetaCollectionFactory();
 
@@ -108,7 +108,7 @@ namespace Furnace.Core.Data.Play.Tests.Factories.Metas
             Assert.AreEqual(metaCollection.Metas.Count, data.Count);
             Assert.AreEqual(data[MetaName1], metaCollection.GetMeta<IntMeta>(MetaName1).Value);
             Assert.AreEqual(data[MetaName2], metaCollection.GetMeta<StringMeta>(MetaName2).Value);
-            Assert.AreEqual(data[MetaName3], metaCollection.GetMeta<IntMeta>(MetaName3).Value);
+            Assert.AreEqual(data[MetaName3], metaCollection.GetMeta<DateTimeMeta>(MetaName3).Value);
         }
     }
 }
