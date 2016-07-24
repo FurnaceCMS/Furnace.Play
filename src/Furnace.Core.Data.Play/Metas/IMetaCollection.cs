@@ -10,6 +10,8 @@ namespace Furnace.Core.Data.Play.Metas
         DateTime DateCreated { get; set; }
         DateTime LastUpdated { get; set; }
         List<IMeta> Metas { get; set; }
-        IMeta this[string name] { get; }
+
+        IEnumerable<TMetaType> GetMeta<TMetaType>() where TMetaType : IMeta;
+        TMetaType GetMeta<TMetaType>(string name) where TMetaType : IMeta;
     }
 }

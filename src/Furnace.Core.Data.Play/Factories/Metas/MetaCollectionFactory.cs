@@ -49,8 +49,7 @@ namespace Furnace.Core.Data.Play.Factories.Metas
                     if (stringMetaFactory == null)
                         continue;
 
-                    var meta = stringMetaFactory.CreateMeta(dataItem.Key, dataItem.Value);
-                    metaCollection.Metas.Add(meta);
+                    metaCollection.Metas.Add(stringMetaFactory.CreateMeta(dataItem.Key, dataItem.Value));
                 }
 
                 if (dataItem.Value is int)
@@ -59,7 +58,7 @@ namespace Furnace.Core.Data.Play.Factories.Metas
                     if (intMetaFactory == null)
                         continue;
 
-                    //metaCollection.Metas.Add(intMetaFactory.CreateMeta(dataItem.Key, dataItem.Value));
+                    metaCollection.Metas.Add(intMetaFactory.CreateMeta(dataItem.Key, dataItem.Value));
                 }
             }
 

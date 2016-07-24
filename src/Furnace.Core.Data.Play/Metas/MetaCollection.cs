@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Furnace.Core.Data.Play.Metas.Typed;
 
 namespace Furnace.Core.Data.Play.Metas
 {
@@ -12,9 +13,17 @@ namespace Furnace.Core.Data.Play.Metas
         public DateTime LastUpdated { get; set; }
         public List<IMeta> Metas { get; set; }
 
-        public IMeta this[string name]
+        public IEnumerable<TMetaType> GetMeta<TMetaType>() where TMetaType : IMeta
         {
-            get { return Metas.FirstOrDefault(x => x.Name == name); }
+            return Metas.Where(x => x is TMetaType)
+                        .Cast<TMetaType>();
+        }
+
+        public TMetaType GetMeta<TMetaType>(string name) where TMetaType : IMeta
+        {
+            return Metas.Where(x => x is TMetaType && x.Name == name)
+                        .Cast<TMetaType>()
+                        .FirstOrDefault();
         }
 
         public MetaCollection()
