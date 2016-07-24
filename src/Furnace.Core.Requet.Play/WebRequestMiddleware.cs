@@ -22,6 +22,7 @@ namespace Furnace.Core.Requet.Play
         public Task Invoke(IDictionary<string, object> environment)
         {
             var renderArray = (List<string>) environment["RenderArray"];
+
             renderArray.Add("Hello from WebRequestMiddleware via OWIN");
             var responseText = string.Join("\n", (List<string>)environment["RenderArray"]);
             var responseBytes = Encoding.UTF8.GetBytes(responseText);

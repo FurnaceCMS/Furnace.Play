@@ -1,6 +1,7 @@
 ﻿using System;
 using Furnace.Core.Play.Kernal.Composition;
 using Microsoft.AspNetCore.Builder;
+using Nancy.Owin;
 using SimpleInjector.Extensions.ExecutionContextScoping;
 
 namespace Furnace.Core.Play
@@ -22,6 +23,7 @@ namespace Furnace.Core.Play
 
             return app.UseOwin(pipeline =>
             {
+                pipeline.UseNancy(opt => opt.Bootstrapper = new Bootstrapper());
                 using (compositionRootBuilder.Container.BeginExecutionContextScope())
                 {
                     foreach (var mw in compositionRoot.FurnaceMiddleware)

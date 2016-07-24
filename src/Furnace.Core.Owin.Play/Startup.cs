@@ -14,7 +14,7 @@ namespace Furnace.Core.Owin.Play
 
         public void Configure(IApplicationBuilder app)
         {
-           app.UseFurnace();
+            app.UseFurnace();
         }
     }
 }
