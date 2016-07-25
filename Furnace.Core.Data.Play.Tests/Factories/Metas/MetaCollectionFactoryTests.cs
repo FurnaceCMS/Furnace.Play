@@ -9,7 +9,7 @@ namespace Furnace.Core.Data.Play.Tests.Factories.Metas
     [TestFixture]
     public class MetaCollectionFactoryTests
     {
-        private MetaCollectionFactory _stringMetaFactory;
+        private MetaCollectionFactory _metaCollectionFactory;
 
         private const string CollectionName = "metaCollection";
         private const string MetaName1 = "meta1name";
@@ -19,7 +19,7 @@ namespace Furnace.Core.Data.Play.Tests.Factories.Metas
         [SetUp]
         public void FixtureSetup()
         {
-            _stringMetaFactory = new MetaCollectionFactory();
+            _metaCollectionFactory = new MetaCollectionFactory();
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace Furnace.Core.Data.Play.Tests.Factories.Metas
             };
 
             //act
-            var metaCollection = _stringMetaFactory.CreateMetaCollection(CollectionName, data);
+            var metaCollection = _metaCollectionFactory.CreateMetaCollection(CollectionName, data);
 
             //assert
             Assert.IsNotNull(metaCollection);
@@ -57,7 +57,7 @@ namespace Furnace.Core.Data.Play.Tests.Factories.Metas
             };
 
             //act
-            var metaCollection = _stringMetaFactory.CreateMetaCollection(CollectionName, data);
+            var metaCollection = _metaCollectionFactory.CreateMetaCollection(CollectionName, data);
 
             //assert
             Assert.IsNotNull(metaCollection);
@@ -80,7 +80,7 @@ namespace Furnace.Core.Data.Play.Tests.Factories.Metas
             };
 
             //act
-            var metaCollection = _stringMetaFactory.CreateMetaCollection(CollectionName, data);
+            var metaCollection = _metaCollectionFactory.CreateMetaCollection(CollectionName, data);
 
             //assert
             Assert.IsNotNull(metaCollection);
@@ -104,7 +104,7 @@ namespace Furnace.Core.Data.Play.Tests.Factories.Metas
             };
 
             //act
-            var metaCollection = _stringMetaFactory.CreateMetaCollection(CollectionName, data);
+            var metaCollection = _metaCollectionFactory.CreateMetaCollection(CollectionName, data);
 
             //assert
             Assert.IsNotNull(metaCollection);
