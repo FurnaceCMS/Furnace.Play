@@ -9,10 +9,18 @@ namespace Furnace.Core.Data.Play.Tests.Factories.Metas
     [TestFixture]
     public class MetaCollectionFactoryTests
     {
+        private MetaCollectionFactory _stringMetaFactory;
+
         private const string CollectionName = "metaCollection";
         private const string MetaName1 = "meta1name";
         private const string MetaName2 = "meta2name";
         private const string MetaName3 = "meta3name";
+
+        [SetUp]
+        public void FixtureSetup()
+        {
+            _stringMetaFactory = new MetaCollectionFactory();
+        }
 
         [Test]
         public void CanCreateStringMetaCollections()
@@ -24,10 +32,9 @@ namespace Furnace.Core.Data.Play.Tests.Factories.Metas
                 {MetaName2, "metaString2Value"},
                 {MetaName3, "metaString3Value"},
             };
-            var stringMetaFactory = new MetaCollectionFactory();
 
             //act
-            var metaCollection = stringMetaFactory.CreateMetaCollection(CollectionName, data);
+            var metaCollection = _stringMetaFactory.CreateMetaCollection(CollectionName, data);
 
             //assert
             Assert.IsNotNull(metaCollection);
@@ -48,10 +55,9 @@ namespace Furnace.Core.Data.Play.Tests.Factories.Metas
                 {MetaName2, 2},
                 {MetaName3, 3},
             };
-            var stringMetaFactory = new MetaCollectionFactory();
 
             //act
-            var metaCollection = stringMetaFactory.CreateMetaCollection(CollectionName, data);
+            var metaCollection = _stringMetaFactory.CreateMetaCollection(CollectionName, data);
 
             //assert
             Assert.IsNotNull(metaCollection);
@@ -72,10 +78,9 @@ namespace Furnace.Core.Data.Play.Tests.Factories.Metas
                 {MetaName2, DateTime.Now.AddMinutes(1)},
                 {MetaName3, DateTime.Now.AddMinutes(2)},
             };
-            var stringMetaFactory = new MetaCollectionFactory();
 
             //act
-            var metaCollection = stringMetaFactory.CreateMetaCollection(CollectionName, data);
+            var metaCollection = _stringMetaFactory.CreateMetaCollection(CollectionName, data);
 
             //assert
             Assert.IsNotNull(metaCollection);
@@ -97,10 +102,9 @@ namespace Furnace.Core.Data.Play.Tests.Factories.Metas
                 {MetaName2, "2"},
                 {MetaName3, DateTime.Now},
             };
-            var stringMetaFactory = new MetaCollectionFactory();
 
             //act
-            var metaCollection = stringMetaFactory.CreateMetaCollection(CollectionName, data);
+            var metaCollection = _stringMetaFactory.CreateMetaCollection(CollectionName, data);
 
             //assert
             Assert.IsNotNull(metaCollection);

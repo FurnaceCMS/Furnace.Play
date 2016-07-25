@@ -1,4 +1,5 @@
 ﻿using System;
+using Furnace.Core.Data.Play.Metas;
 using Furnace.Core.Data.Play.Metas.Typed;
 
 namespace Furnace.Core.Data.Play.Factories.Metas.Typed
@@ -7,7 +8,12 @@ namespace Furnace.Core.Data.Play.Factories.Metas.Typed
     {
         public override Type FactoryType => typeof(DateTime);
 
-        public ITypedMeta<DateTime> CreateMeta(string name, DateTime value)
+        public IMeta CreateMeta(string name, dynamic value)
+        {
+            return CreateTypedMeta(name, value);
+        }
+
+        public ITypedMeta<DateTime> CreateTypedMeta(string name, DateTime value)
         {
             return new DateTimeMeta()
             {

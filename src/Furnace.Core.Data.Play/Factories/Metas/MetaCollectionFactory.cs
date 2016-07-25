@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Furnace.Core.Data.Play.Factories.Metas.Typed;
 using Furnace.Core.Data.Play.Metas;
 using System.Linq;
 
@@ -69,42 +68,12 @@ namespace Furnace.Core.Data.Play.Factories.Metas
                 Name = name
             };
 
-
-            //TODO:: Get rid of this horrible loop, Polymorphism FTW!
             foreach (var dataItem in data)
             {
                 if (!MetaFactories.ContainsKey(dataItem.Value.GetType()))
                     continue;
 
-                if (dataItem.Value is string)
-                {
-                    var stringMetaFactory = MetaFactories[dataItem.Value.GetType()] as StringMetaFactory;
-                    if (stringMetaFactory == null)
-                        continue;
-
-                    metaCollection.Metas.Add(stringMetaFactory.CreateMeta(dataItem.Key, dataItem.Value));
-                    continue;
-                }
-
-                if (dataItem.Value is int)
-                {
-                    var intMetaFactory = MetaFactories[dataItem.Value.GetType()] as IntMetaFactory;
-                    if (intMetaFactory == null)
-                        continue;
-
-                    metaCollection.Metas.Add(intMetaFactory.CreateMeta(dataItem.Key, dataItem.Value));
-                    continue;
-                }
-
-                if (dataItem.Value is DateTime)
-                {
-                    var dateTimeMetaFactory = MetaFactories[dataItem.Value.GetType()] as DateTimeMetaFactory;
-                    if (dateTimeMetaFactory == null)
-                        continue;
-
-                    metaCollection.Metas.Add(dateTimeMetaFactory.CreateMeta(dataItem.Key, dataItem.Value));
-                    continue;
-                }
+                metaCollection.Metas.Add(MetaFactories[dataItem.Value.GetType()].CreateMeta(dataItem.Key, dataItem.Value));
             }
 
             return metaCollection;
