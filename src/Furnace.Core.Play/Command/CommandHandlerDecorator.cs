@@ -1,6 +1,6 @@
-﻿namespace Furnace.Core.Play.Kernal.Command
+﻿namespace Furnace.Core.Play.Command
 {
-    public abstract class CommandHandlerDecorator<TCommand> : ICommandHandler<TCommand> where TCommand : Kernal.Command.Command
+    public abstract class CommandHandlerDecorator<TCommand> : ICommandHandler<TCommand> where TCommand : Play.Command.Command
     {
         protected readonly ICommandHandler<TCommand> Decorated;
 

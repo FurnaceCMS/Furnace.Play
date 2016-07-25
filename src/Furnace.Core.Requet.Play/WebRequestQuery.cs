@@ -1,4 +1,4 @@
-﻿using Furnace.Core.Play.Kernal.Query;
+﻿using Furnace.Core.Play.Query;
 
 namespace Furnace.Core.Requet.Play
 {

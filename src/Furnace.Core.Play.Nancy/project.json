@@ -1,8 +1,4 @@
 {
-  "content": [
-    "Content",
-    "Views"
-  ],
   "version": "1.0.0-*",
   "buildOptions": {
     "emitEntryPoint": false
@@ -10,13 +6,11 @@
 
   "dependencies": {
     "Furnace.Core.Play": "1.0.0-*",
-    "Microsoft.AspNetCore.Owin": "1.0.0",
     "Microsoft.NETCore.App": {
       "type": "platform",
       "version": "1.0.0"
     },
-    "SimpleInjector": "3.2.0",
-    "SimpleInjector.Integration.AspNetCore.Mvc": "3.2.3"
+    "Nancy": "2.0.0-barneyrubble"
   },
 
   "frameworks": {

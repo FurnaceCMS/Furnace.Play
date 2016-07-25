@@ -1,4 +1,4 @@
-﻿namespace Furnace.Core.Play.Kernal.Query
+﻿namespace Furnace.Core.Play.Query
 {
     public abstract class Query
     {

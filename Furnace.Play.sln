@@ -20,6 +20,8 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Furnace.Core.Owin.Play", "s
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Furnace.Core.Requet.Debug.Play", "src\Furnace.Core.Requet.Debug.Play\Furnace.Core.Requet.Debug.Play.xproj", "{F1783C38-B8FD-4153-A65D-BE4AB38E950F}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Furnace.Core.Play.Nancy", "src\Furnace.Core.Play.Nancy\Furnace.Core.Play.Nancy.xproj", "{5C4212FC-780D-470C-A239-F27B18544F56}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{F1783C38-B8FD-4153-A65D-BE4AB38E950F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1783C38-B8FD-4153-A65D-BE4AB38E950F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1783C38-B8FD-4153-A65D-BE4AB38E950F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C4212FC-780D-470C-A239-F27B18544F56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C4212FC-780D-470C-A239-F27B18544F56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C4212FC-780D-470C-A239-F27B18544F56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C4212FC-780D-470C-A239-F27B18544F56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,5 +59,6 @@ Global
 		{025AB6CA-86B9-421D-8BD5-FD25C21C132B} = {47D58C48-3BB2-4F0E-90F5-D3A256AF2AE4}
 		{AC9BE2DA-3D35-4CAE-B248-8C11920246AA} = {47D58C48-3BB2-4F0E-90F5-D3A256AF2AE4}
 		{F1783C38-B8FD-4153-A65D-BE4AB38E950F} = {47D58C48-3BB2-4F0E-90F5-D3A256AF2AE4}
+		{5C4212FC-780D-470C-A239-F27B18544F56} = {47D58C48-3BB2-4F0E-90F5-D3A256AF2AE4}
 	EndGlobalSection
 EndGlobal

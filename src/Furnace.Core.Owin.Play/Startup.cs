@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Furnace.Core.Play;
-using Furnace.Core.Play.Kernal.Composition;
+using Furnace.Core.Play.Composition;
 
 namespace Furnace.Core.Owin.Play
 {
@@ -9,7 +9,7 @@ namespace Furnace.Core.Owin.Play
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IFurnaceCompositionRootBuilder, FurnaceCompositionRootBuilder>();
+            services.AddSingleton<IFurnaceCompositionRootBuilder, CompositionRootBuilder>();
         }
 
         public void Configure(IApplicationBuilder app)

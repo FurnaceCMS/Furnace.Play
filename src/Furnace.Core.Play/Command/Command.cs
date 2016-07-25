@@ -1,4 +1,4 @@
-﻿namespace Furnace.Core.Play.Kernal.Command
+﻿namespace Furnace.Core.Play.Command
 {
     public abstract class Command
     {

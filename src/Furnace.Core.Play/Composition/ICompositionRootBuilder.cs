@@ -1,4 +1,4 @@
-namespace Furnace.Core.Play.Kernal.Composition
+namespace Furnace.Core.Play.Composition
 {
     public interface ICompositionRootBuilder
     {

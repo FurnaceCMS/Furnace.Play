@@ -1,4 +1,4 @@
-namespace Furnace.Core.Play.Kernal.Middleware
+namespace Furnace.Core.Play.Middleware
 {
     public interface IFurnaceMiddlewareDecorator
     {

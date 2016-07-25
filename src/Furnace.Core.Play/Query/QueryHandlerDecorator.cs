@@ -1,7 +1,7 @@
-﻿namespace Furnace.Core.Play.Kernal.Query
+﻿namespace Furnace.Core.Play.Query
 {
     public abstract class QueryHandlerDecorator<TQuery, TResult> : IQueryHandler<TQuery, TResult>
-       where TQuery : Query
+       where TQuery : Play.Query.Query
        where TResult : QueryResult
     {
         protected readonly IQueryHandler<TQuery, TResult> Decorated;

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Furnace.Core.Play.Kernal.Middleware;
+using Furnace.Core.Play.Middleware;
 
-namespace Furnace.Core.Play.Kernal.Composition
+namespace Furnace.Core.Play.Composition
 {
     public interface ICompositionRoot
     {

@@ -1,7 +1,6 @@
 ﻿using System;
-using Furnace.Core.Play.Kernal.Composition;
+using Furnace.Core.Play.Composition;
 using Microsoft.AspNetCore.Builder;
-using Nancy.Owin;
 using SimpleInjector.Extensions.ExecutionContextScoping;
 
 namespace Furnace.Core.Play
@@ -16,19 +15,21 @@ namespace Furnace.Core.Play
             var compositionRootBuilder =
                 app.ApplicationServices.GetService(typeof(IFurnaceCompositionRootBuilder)) as IFurnaceCompositionRootBuilder;
 
-            if(compositionRootBuilder == null)
+            if (compositionRootBuilder == null)
                 throw new ArgumentNullException(nameof(compositionRootBuilder));
+
+            compositionRootBuilder.Container.Register(() => compositionRootBuilder);
+
 
             var compositionRoot = compositionRootBuilder.Build();
 
             return app.UseOwin(pipeline =>
             {
-                pipeline.UseNancy(opt => opt.Bootstrapper = new Bootstrapper());
                 using (compositionRootBuilder.Container.BeginExecutionContextScope())
                 {
                     foreach (var mw in compositionRoot.FurnaceMiddleware)
                     {
-                        pipeline(next => mw.Invoke);
+                        mw.Use(pipeline);
                     }
                 }
             });

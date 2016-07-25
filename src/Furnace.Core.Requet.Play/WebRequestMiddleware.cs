@@ -3,12 +3,12 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-using Furnace.Core.Play.Kernal.Middleware;
-using Furnace.Core.Play.Kernal.Query;
+using Furnace.Core.Play.Middleware;
+using Furnace.Core.Play.Query;
 
 namespace Furnace.Core.Requet.Play
 {
-    public class WebRequestMiddleware : IFurnaceMiddleware
+    public class WebRequestMiddleware : FurnaceMiddleware
     {
         private readonly IQueryHandler<WebRequestQuery, WebRequestQueryResult> _queryHandler;
 
@@ -17,11 +17,10 @@ namespace Furnace.Core.Requet.Play
             _queryHandler = queryHandler;
         }
 
-        public int Weight => 0;
-
-        public Task Invoke(IDictionary<string, object> environment)
+        public override int Weight => 0;
+        public override Task Next(IDictionary<string, object> environment)
         {
-            var renderArray = (List<string>) environment["RenderArray"];
+            var renderArray = (List<string>)environment["RenderArray"];
 
             renderArray.Add("Hello from WebRequestMiddleware via OWIN");
             var responseText = string.Join("\n", (List<string>)environment["RenderArray"]);

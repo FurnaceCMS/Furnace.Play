@@ -1,6 +1,6 @@
 ﻿using SimpleInjector;
 
-namespace Furnace.Core.Play.Kernal.Module
+namespace Furnace.Core.Play.Module
 {
     public interface IFurnaceModule
     {

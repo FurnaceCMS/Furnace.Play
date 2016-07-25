@@ -2,28 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Furnace.Core.Play.Kernal.Middleware;
-using Furnace.Core.Play.Kernal.Module;
+using Furnace.Core.Play.Middleware;
+using Furnace.Core.Play.Module;
 using Microsoft.Extensions.DependencyModel;
 using SimpleInjector;
 using SimpleInjector.Extensions.ExecutionContextScoping;
 
-namespace Furnace.Core.Play.Kernal.Composition
+namespace Furnace.Core.Play.Composition
 {
-    public class FurnaceCompositionRootBuilder : IFurnaceCompositionRootBuilder
+    public class CompositionRootBuilder : IFurnaceCompositionRootBuilder
     {
-
         public Container Container { get; }
 
-        public FurnaceCompositionRootBuilder()
+        public CompositionRootBuilder()
         {
             Container = new Container();
             Container.Options.DefaultScopedLifestyle = new ExecutionContextScopeLifestyle();
         }
 
         public ICompositionRoot Build()
-        {
-           
+        {   
             var moduleAssemblies = GetModuleAssemblies().ToList();
 
             ConfigureContainers(moduleAssemblies, Container);
