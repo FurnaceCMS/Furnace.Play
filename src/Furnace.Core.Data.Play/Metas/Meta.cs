@@ -10,16 +10,6 @@ namespace Furnace.Core.Data.Play.Metas
         public DateTime LastUpdated { get; set; }
         public TMetaType Value { get; set; }
 
-        public TValueType GetValue<TValueType>() where TValueType : class
-        {
-            if (typeof(TMetaType) != typeof(TValueType))
-            {
-                throw new Exception("Ivalid type");
-            }
-
-            return Value as TValueType;
-        }
-
         public override string ToString()
         {
             return $"Furnace {typeof(TMetaType)} meta. ID: {Id}. Name: {Name}";

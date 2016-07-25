@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Furnace.Core.Data.Play.Metas.Typed;
 
 namespace Furnace.Core.Data.Play.Metas
 {
