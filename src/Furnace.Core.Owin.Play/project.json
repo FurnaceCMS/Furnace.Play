@@ -7,7 +7,6 @@
   "dependencies": {
     "Furnace.Core.Play": "1.0.0-*",
     "Furnace.Core.Play.Nancy": "1.0.0-*",
-    "Furnace.Core.Requet.Debug.Play": "1.0.0-*",
     "Furnace.Core.Requet.Play": "1.0.0-*",
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",

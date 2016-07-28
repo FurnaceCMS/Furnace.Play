@@ -5,6 +5,7 @@ using System.Reflection;
 using Furnace.Core.Play.Middleware;
 using Furnace.Core.Play.Module;
 using Microsoft.Extensions.DependencyModel;
+using Nancy;
 using SimpleInjector;
 using SimpleInjector.Extensions.ExecutionContextScoping;
 
@@ -44,8 +45,10 @@ namespace Furnace.Core.Play.Composition
 
             foreach (var module in modules)
             {
-                var instance = (IFurnaceModule) Activator.CreateInstance(module);
+                var instance = (FurnaceModule) Activator.CreateInstance(module);
                 instance.ConfigureContainer(container);
+
+                container.Register(module, () => instance);
             }
         }
 

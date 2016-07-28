@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
 using Furnace.Core.Play.Composition;
 using Microsoft.AspNetCore.Builder;
 using SimpleInjector.Extensions.ExecutionContextScoping;
@@ -7,7 +8,7 @@ namespace Furnace.Core.Play
 {
     public static class FurnaceApplicationBuilderExtensions
     {
-        public static IApplicationBuilder UseFurnace(this IApplicationBuilder app)
+        public static void UseFurnace(this IApplicationBuilder app)
         {
             if (app == null)
                 throw new ArgumentNullException(nameof(app));
@@ -20,19 +21,20 @@ namespace Furnace.Core.Play
 
             compositionRootBuilder.Container.Register(() => compositionRootBuilder);
 
-
             var compositionRoot = compositionRootBuilder.Build();
 
-            return app.UseOwin(pipeline =>
+            foreach (var mw in compositionRoot.FurnaceMiddleware)
             {
                 using (compositionRootBuilder.Container.BeginExecutionContextScope())
                 {
-                    foreach (var mw in compositionRoot.FurnaceMiddleware)
+                    app.UseOwin(pipeline =>
                     {
-                        mw.Use(pipeline);
-                    }
+                        pipeline(next => mw.Invoke);
+                    });
+                    
                 }
-            });
+            }
+
         }
     }
 }

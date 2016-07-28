@@ -3352,21 +3352,6 @@
           "netcoreapp1.0/Furnace.Core.Play.Nancy.dll": {}
         }
       },
-      "Furnace.Core.Requet.Debug.Play/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v1.0",
-        "dependencies": {
-          "Furnace.Core.Play": "1.0.0",
-          "Furnace.Core.Requet.Play": "1.0.0",
-          "Microsoft.NETCore.App": "1.0.0"
-        },
-        "compile": {
-          "netcoreapp1.0/Furnace.Core.Requet.Debug.Play.dll": {}
-        },
-        "runtime": {
-          "netcoreapp1.0/Furnace.Core.Requet.Debug.Play.dll": {}
-        }
-      },
       "Furnace.Core.Requet.Play/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.0",
@@ -9218,11 +9203,6 @@
       "path": "../Furnace.Core.Play.Nancy/project.json",
       "msbuildProject": "../Furnace.Core.Play.Nancy/Furnace.Core.Play.Nancy.xproj"
     },
-    "Furnace.Core.Requet.Debug.Play/1.0.0": {
-      "type": "project",
-      "path": "../Furnace.Core.Requet.Debug.Play/project.json",
-      "msbuildProject": "../Furnace.Core.Requet.Debug.Play/Furnace.Core.Requet.Debug.Play.xproj"
-    },
     "Furnace.Core.Requet.Play/1.0.0": {
       "type": "project",
       "path": "../Furnace.Core.Requet.Play/project.json",
@@ -9233,7 +9213,6 @@
     "": [
       "Furnace.Core.Play >= 1.0.0-*",
       "Furnace.Core.Play.Nancy >= 1.0.0-*",
-      "Furnace.Core.Requet.Debug.Play >= 1.0.0-*",
       "Furnace.Core.Requet.Play >= 1.0.0-*",
       "Microsoft.AspNetCore.Server.IISIntegration >= 1.0.0",
       "Microsoft.AspNetCore.Server.Kestrel >= 1.0.0",

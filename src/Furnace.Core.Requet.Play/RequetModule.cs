@@ -1,5 +1,4 @@
 ﻿using Furnace.Core.Play.Module;
-using Furnace.Core.Play.Query;
 using SimpleInjector;
 
 namespace Furnace.Core.Requet.Play
@@ -8,12 +7,12 @@ namespace Furnace.Core.Requet.Play
     {
         public RequetModule()
         {
-            Get("/", args => View["index"]);
+            Get("/", args => "Hello from Nancy running on CoreCLR");
+            //Get("/", args => View["index"]);
         }
 
         public override void ConfigureContainer(Container container)
         {
-            container.Register<IQueryHandler<WebRequestQuery, WebRequestQueryResult>, WebRequestQueryHandler>(Lifestyle.Scoped);
         }
     }
 }
