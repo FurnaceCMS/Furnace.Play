@@ -1,13 +1,12 @@
 ﻿using Nancy;
-using SimpleInjector;
 
 namespace Furnace.Core.Play.Module
 {
+    internal interface IFurnaceModule
+    {
+    }
+
     public abstract class FurnaceModule: NancyModule, IFurnaceModule
     {
-        public virtual void ConfigureContainer(Container container)
-        {
-            
-        }
     }
 }

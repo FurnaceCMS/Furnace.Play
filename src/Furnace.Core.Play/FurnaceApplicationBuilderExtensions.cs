@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Security.Cryptography.X509Certificates;
 using Furnace.Core.Play.Composition;
 using Microsoft.AspNetCore.Builder;
 using SimpleInjector.Extensions.ExecutionContextScoping;

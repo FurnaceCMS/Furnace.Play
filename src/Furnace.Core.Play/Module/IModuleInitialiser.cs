@@ -2,7 +2,7 @@
 
 namespace Furnace.Core.Play.Module
 {
-    public interface IFurnaceModule
+    public interface IModuleInitialiser
     {
         void ConfigureContainer(Container container);
     }

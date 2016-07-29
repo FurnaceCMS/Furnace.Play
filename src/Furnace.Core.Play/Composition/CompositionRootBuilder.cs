@@ -25,9 +25,10 @@ namespace Furnace.Core.Play.Composition
         {   
             var moduleAssemblies = GetModuleAssemblies().ToList();
 
-            ConfigureContainers(moduleAssemblies, Container);
+            InvokeModuleInitialisers(moduleAssemblies, Container);
             RegisterMiddleware(moduleAssemblies, Container);
-            
+            RegisterModules(moduleAssemblies, Container);
+
             return new CompositionRoot(Container.GetAllInstances<IFurnaceMiddleware>().OrderBy(mw => mw.Weight));
         }
 
@@ -38,17 +39,15 @@ namespace Furnace.Core.Play.Composition
                 select Assembly.Load(new AssemblyName(library.Name));
         }
 
-        private static void ConfigureContainers(IEnumerable<Assembly> moduleAssemblies, Container container)
+        private static void InvokeModuleInitialisers(IEnumerable<Assembly> moduleAssemblies, Container container)
         {
-            var modules = from ti in GetFurnaceModules(moduleAssemblies)
+            var moduleInitialisers = from ti in GetFurnaceModuleInitialiser(moduleAssemblies)
                 select ti.UnderlyingSystemType;
 
-            foreach (var module in modules)
+            foreach (var module in moduleInitialisers)
             {
-                var instance = (FurnaceModule) Activator.CreateInstance(module);
-                instance.ConfigureContainer(container);
-
-                container.Register(module, () => instance);
+                var moduleInitialiser = (IModuleInitialiser) Activator.CreateInstance(module);
+                moduleInitialiser.ConfigureContainer(container);
             }
         }
 
@@ -58,6 +57,14 @@ namespace Furnace.Core.Play.Composition
                 select ti.UnderlyingSystemType;
 
             container.RegisterCollection<IFurnaceMiddleware>(middleware);
+        }
+
+        private static void RegisterModules(IEnumerable<Assembly> moduleAssemblies, Container container)
+        {
+            var modules = from ti in GetFurnaceModules(moduleAssemblies)
+                             select ti.UnderlyingSystemType;
+
+            container.RegisterCollection<FurnaceModule>(modules);
         }
 
         private static IEnumerable<TypeInfo> GetFurnaceMiddleware(IEnumerable<Assembly> assemblies)
@@ -76,6 +83,14 @@ namespace Furnace.Core.Play.Composition
                 from d in a.DefinedTypes
                 where d.ImplementedInterfaces.Contains(typeof(IFurnaceModule))
                 select d;
+        }
+
+        private static IEnumerable<TypeInfo> GetFurnaceModuleInitialiser(IEnumerable<Assembly> assemblies)
+        {
+            return from a in assemblies
+                   from d in a.DefinedTypes
+                   where d.ImplementedInterfaces.Contains(typeof(IModuleInitialiser))
+                   select d;
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Furnace.Core.Owin.Play")]
+[assembly: AssemblyProduct("Furnace.Core.Node.Play")]
 [assembly: AssemblyTrademark("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
@@ -16,4 +16,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("ac9be2da-3d35-4cae-b248-8c11920246aa")]
+[assembly: Guid("bb98aeec-ea78-41c3-9739-431de5a6d38c")]

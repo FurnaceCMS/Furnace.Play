@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Furnace.Core.Play.Composition;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Furnace.Core.Play;
-using Furnace.Core.Play.Composition;
 
-namespace Furnace.Core.Owin.Play
+namespace Furnace.Core.Play
 {
-    public class Startup
+    public class FurnaceStartup
     {
         public void ConfigureServices(IServiceCollection services)
         {

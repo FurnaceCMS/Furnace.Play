@@ -7,8 +7,8 @@
 
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>ac9be2da-3d35-4cae-b248-8c11920246aa</ProjectGuid>
-    <RootNamespace>Furnace.Core.Owin.Play</RootNamespace>
+    <ProjectGuid>bb98aeec-ea78-41c3-9739-431de5a6d38c</ProjectGuid>
+    <RootNamespace>Furnace.Core.Node.Play</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
