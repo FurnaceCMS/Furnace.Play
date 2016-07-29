@@ -15,7 +15,6 @@ namespace Furnace.Core.Play.Nancy
             var options = new NancyOptions { Bootstrapper = new Bootstrapper(container) };
             options.Bootstrapper.Initialise();
             container.Register(()=> options, Lifestyle.Singleton);
-            
         }
     }
 }

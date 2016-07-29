@@ -1,7 +1,6 @@
 ﻿using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.TinyIoc;
-using Nancy.Validation;
 using SimpleInjector;
 
 namespace Furnace.Core.Play.Nancy
@@ -21,6 +20,8 @@ namespace Furnace.Core.Play.Nancy
             nancy.Register(typeof(INancyModuleCatalog), new SimpleInjectorModuleCatalog(_container));
             nancy.Register(typeof(INancyContextFactory), new SimpleInjectorScopedContextFactory(
                 _container, nancy.Resolve<INancyContextFactory>()));
+
+            Conventions.ViewLocationConventions.Add((viewName, model, context) => string.Concat("modules/" + context.ModuleName + "/views/", viewName));
         }
     }
 }
