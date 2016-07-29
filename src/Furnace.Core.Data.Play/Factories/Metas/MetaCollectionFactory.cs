@@ -8,43 +8,35 @@ namespace Furnace.Core.Data.Play.Factories.Metas
 {
     public class MetaCollectionFactory
     {
-        public IDictionary<Type, IMetaFactory> MetaFactories { get; set; }
+        public IDictionary<Type, IMetaFactory> TypedMetaFactories { get; set; }
 
         public MetaCollectionFactory()
         {
-            PopulateMetaFactories();
+            BuildTypedMetaFactoriesDictionary();
         }
 
-        private void PopulateMetaFactories()
+        private void BuildTypedMetaFactoriesDictionary()
         {
-            BuildMetaFactoriesDictionary();
-        }
+            TypedMetaFactories = new Dictionary<Type, IMetaFactory>();
 
-        private void BuildMetaFactoriesDictionary()
-        {
-            MetaFactories = new Dictionary<Type, IMetaFactory>();
-
-            var interfaceType = typeof(IMetaFactory);
-            var metaFactoryTypes = GetMetaFactoryTypes(interfaceType);
-
-            foreach (var metaFactoryType in metaFactoryTypes)
+            foreach (var metaFactoryType in GetMetaFactoryTypes())
             {
                 var metaFactory = Activator.CreateInstance(metaFactoryType) as IMetaFactory;
                 if (metaFactory == null)
                     continue;
 
-                MetaFactories.Add(metaFactory.FactoryType, metaFactory);
+                TypedMetaFactories.Add(metaFactory.FactoryType, metaFactory);
             }
         }
 
-        private IEnumerable<Type> GetMetaFactoryTypes(Type interfaceType)
+        private IEnumerable<Type> GetMetaFactoryTypes()
         {
             var metaFactoryTypes = typeof(MetaCollectionFactory).GetTypeInfo()
-                .Assembly
-                .GetTypes()
-                .Where(p => interfaceType.IsAssignableFrom(p)
-                            && !DoesTypeHaveAttribute(p, TypeAttributes.Abstract)
-                            && !DoesTypeHaveAttribute(p, TypeAttributes.Interface));
+                                                                .Assembly
+                                                                .GetTypes()
+                                                                .Where(type => typeof(IMetaFactory).IsAssignableFrom(type)
+                                                                            && !DoesTypeHaveAttribute(type, TypeAttributes.Abstract)
+                                                                            && !DoesTypeHaveAttribute(type, TypeAttributes.Interface));
             return metaFactoryTypes;
         }
 
@@ -55,7 +47,8 @@ namespace Furnace.Core.Data.Play.Factories.Metas
 
         public IMetaCollection GetMetaCollection(Guid id)
         {
-            return new MetaCollection();
+            //TODO: Implement MetaCollectionFactory.GetMetaCollection(guid
+            throw new NotImplementedException();
         }
 
         public IMetaCollection CreateMetaCollection(string name, IDictionary<string, dynamic> data)
@@ -70,10 +63,10 @@ namespace Furnace.Core.Data.Play.Factories.Metas
 
             foreach (var dataItem in data)
             {
-                if (!MetaFactories.ContainsKey(dataItem.Value.GetType()))
+                if (!TypedMetaFactories.ContainsKey(dataItem.Value.GetType()))
                     continue;
 
-                metaCollection.Metas.Add(MetaFactories[dataItem.Value.GetType()].CreateMeta(dataItem.Key, dataItem.Value));
+                metaCollection.Metas.Add(TypedMetaFactories[dataItem.Value.GetType()].CreateMeta(dataItem.Key, dataItem.Value));
             }
 
             return metaCollection;
