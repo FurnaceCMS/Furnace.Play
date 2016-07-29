@@ -7293,8 +7293,8 @@
     },
     "Furnace.Core.Play/1.0.0": {
       "type": "project",
-      "path": "../src/Furnace.Core.Play/project.json",
-      "msbuildProject": "../src/Furnace.Core.Play/Furnace.Core.Play.xproj"
+      "path": "../Furnace.Core.Play/project.json",
+      "msbuildProject": "../Furnace.Core.Play/Furnace.Core.Play.xproj"
     }
   },
   "projectFileDependencyGroups": {

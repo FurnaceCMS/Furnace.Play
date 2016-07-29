@@ -9313,8 +9313,8 @@
     },
     "Furnace.Core.Node.Play/1.0.0": {
       "type": "project",
-      "path": "../../Furnace.Core.Node.Play/project.json",
-      "msbuildProject": "../../Furnace.Core.Node.Play/Furnace.Core.Node.Play.xproj"
+      "path": "../Furnace.Core.Node.Play/project.json",
+      "msbuildProject": "../Furnace.Core.Node.Play/Furnace.Core.Node.Play.xproj"
     },
     "Furnace.Core.Play/1.0.0": {
       "type": "project",

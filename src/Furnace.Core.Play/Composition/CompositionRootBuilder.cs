@@ -5,7 +5,6 @@ using System.Reflection;
 using Furnace.Core.Play.Middleware;
 using Furnace.Core.Play.Module;
 using Microsoft.Extensions.DependencyModel;
-using Nancy;
 using SimpleInjector;
 using SimpleInjector.Extensions.ExecutionContextScoping;
 
@@ -64,7 +63,10 @@ namespace Furnace.Core.Play.Composition
             var modules = from ti in GetFurnaceModules(moduleAssemblies)
                              select ti.UnderlyingSystemType;
 
-            container.RegisterCollection<FurnaceModule>(modules);
+            foreach (var module in modules)
+            {
+                container.Register(module);
+            }
         }
 
         private static IEnumerable<TypeInfo> GetFurnaceMiddleware(IEnumerable<Assembly> assemblies)
