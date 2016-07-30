@@ -1,8 +1,10 @@
 ﻿using System;
 using Furnace.Core.Data.Play.Metas;
+using Furnace.Core.Data.Play.Persistence;
 using Furnace.Core.Node.Play.Query;
 using Furnace.Core.Play.Module;
 using Furnace.Core.Play.Query;
+using Nancy;
 
 namespace Furnace.Core.Node.Play
 {
@@ -14,18 +16,26 @@ namespace Furnace.Core.Node.Play
         {
             _nodeQueryHandeler = nodeQueryHandeler;
            
-            Get("/node/{nodeId}", parameters => "node is "  + Handel(parameters.nodeId).ToString());
+            Get("/node/{nodeId}", parameters => Handel(parameters));
         }
 
-        private IMetaCollection Handel(Guid nodeId)
+        private Response Handel(dynamic parameters)
         {
-            var nodeQuery = new NodeQuery
+            try
             {
-                NodeId = nodeId
-            };
+                var nodeQuery = new NodeQuery
+                {
+                    NodeId = parameters.nodeId
+                };
 
-            var nodeQueryResult = _nodeQueryHandeler.Handle(nodeQuery);
-            return nodeQueryResult.MetaCollection;
+                var nodeQueryResult = _nodeQueryHandeler.Handle(nodeQuery);
+
+                return "node is " + nodeQueryResult;
+            }
+            catch (MetaCollectionNotFoundException)
+            {
+                return new NotFoundResponse();
+            }
         }
     }
 }
