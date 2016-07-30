@@ -1,5 +1,5 @@
 ﻿using System;
-using Furnace.Core.Play.Kernal.Composition;
+using Furnace.Core.Play.Composition;
 using Microsoft.AspNetCore.Builder;
 using SimpleInjector.Extensions.ExecutionContextScoping;
 
@@ -7,7 +7,7 @@ namespace Furnace.Core.Play
 {
     public static class FurnaceApplicationBuilderExtensions
     {
-        public static IApplicationBuilder UseFurnace(this IApplicationBuilder app)
+        public static void UseFurnace(this IApplicationBuilder app)
         {
             if (app == null)
                 throw new ArgumentNullException(nameof(app));
@@ -15,21 +15,25 @@ namespace Furnace.Core.Play
             var compositionRootBuilder =
                 app.ApplicationServices.GetService(typeof(IFurnaceCompositionRootBuilder)) as IFurnaceCompositionRootBuilder;
 
-            if(compositionRootBuilder == null)
+            if (compositionRootBuilder == null)
                 throw new ArgumentNullException(nameof(compositionRootBuilder));
+
+            compositionRootBuilder.Container.Register(() => compositionRootBuilder);
 
             var compositionRoot = compositionRootBuilder.Build();
 
-            return app.UseOwin(pipeline =>
+            foreach (var mw in compositionRoot.FurnaceMiddleware)
             {
                 using (compositionRootBuilder.Container.BeginExecutionContextScope())
                 {
-                    foreach (var mw in compositionRoot.FurnaceMiddleware)
+                    app.UseOwin(pipeline =>
                     {
                         pipeline(next => mw.Invoke);
-                    }
+                    });
+                    
                 }
-            });
+            }
+
         }
     }
 }
