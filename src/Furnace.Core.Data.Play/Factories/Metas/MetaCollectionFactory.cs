@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Furnace.Core.Data.Play.Factories.Metas
 {
-    public class MetaCollectionFactory
+    public class MetaCollectionFactory : IMetaCollectionFactory
     {
         public IDictionary<Type, IMetaFactory> TypedMetaFactories { get; set; }
 
