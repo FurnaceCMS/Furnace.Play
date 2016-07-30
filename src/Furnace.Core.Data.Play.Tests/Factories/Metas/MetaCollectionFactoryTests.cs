@@ -19,7 +19,7 @@ namespace Furnace.Core.Data.Play.Tests.Factories.Metas
         [SetUp]
         public void FixtureSetup()
         {
-            _metaCollectionFactory = new MetaCollectionFactory();
+            _metaCollectionFactory = new MetaCollectionFactory(null);
         }
 
         [Test]

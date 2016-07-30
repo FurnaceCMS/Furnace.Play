@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Reflection;
 using Furnace.Core.Data.Play.Metas;
 using System.Linq;
+using Furnace.Core.Data.Play.Persistence;
 
 namespace Furnace.Core.Data.Play.Factories.Metas
 {
     public class MetaCollectionFactory : IMetaCollectionFactory
     {
+        private readonly IPersistence _persistence;
         public IDictionary<Type, IMetaFactory> TypedMetaFactories { get; set; }
 
-        public MetaCollectionFactory()
+        public MetaCollectionFactory(IPersistence persistence)
         {
+            _persistence = persistence;
             BuildTypedMetaFactoriesDictionary();
         }
 
@@ -47,8 +50,7 @@ namespace Furnace.Core.Data.Play.Factories.Metas
 
         public IMetaCollection GetMetaCollection(Guid id)
         {
-            //TODO: Implement MetaCollectionFactory.GetMetaCollection(guid
-            throw new NotImplementedException();
+            return _persistence.Load(id);
         }
 
         public IMetaCollection CreateMetaCollection(string name, IDictionary<string, dynamic> data)
@@ -68,6 +70,8 @@ namespace Furnace.Core.Data.Play.Factories.Metas
 
                 metaCollection.Metas.Add(TypedMetaFactories[dataItem.Value.GetType()].CreateMeta(dataItem.Key, dataItem.Value));
             }
+
+            _persistence.Save(metaCollection);
 
             return metaCollection;
         }

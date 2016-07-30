@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Furnace.Core.Data.Play.Factories.Metas;
 using Furnace.Core.Play.Query;
 
@@ -16,11 +15,14 @@ namespace Furnace.Core.Node.Play.Query
 
         public NodeQueryResult Handle(NodeQuery query)
         {
-            var data = new Dictionary<string, dynamic>
-            {
-                {"Title", "test"},
-            };
-            var metaCollection  = _metaCollectionFactory.CreateMetaCollection("test", data);
+            //var data = new Dictionary<string, dynamic>
+            //{
+            //    {"Title", "metaString1Value"}
+            //};
+
+            //_metaCollectionFactory.CreateMetaCollection("test", data);
+
+            var metaCollection = _metaCollectionFactory.GetMetaCollection(query.NodeId);
 
             return new NodeQueryResult(metaCollection);
         }

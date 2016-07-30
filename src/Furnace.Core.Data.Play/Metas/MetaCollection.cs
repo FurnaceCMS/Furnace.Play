@@ -29,5 +29,16 @@ namespace Furnace.Core.Data.Play.Metas
         {
             Metas = new List<IMeta>();
         }
+
+        public override string ToString()
+        {
+            var metas = string.Empty;
+            foreach (var meta in Metas)
+            {
+                metas += meta + "\n";
+            }
+            
+            return $"Furnace ID: {Id}. Name: {Name} Metas: {metas} ";
+        }
     }
 }

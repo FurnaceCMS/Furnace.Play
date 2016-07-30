@@ -8,6 +8,7 @@ namespace Furnace.Core.Data.Play.Metas
         public string Name { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime LastUpdated { get; set; }
+        public string Type => GetType().FullName;
         public TMetaType Value { get; set; }
 
         public override string ToString()

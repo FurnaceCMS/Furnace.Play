@@ -3584,7 +3584,7 @@
           "Furnace.Core.Play": "1.0.0",
           "Microsoft.CSharp": "4.0.1",
           "Microsoft.NETCore.App": "1.0.0",
-          "NETStandard.Library": "1.5.0-rc2-24027",
+          "Newtonsoft.Json": "9.0.1",
           "System.Dynamic.Runtime": "4.0.11"
         },
         "compile": {

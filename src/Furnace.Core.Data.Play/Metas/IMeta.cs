@@ -8,5 +8,6 @@ namespace Furnace.Core.Data.Play.Metas
         string Name { get; set; }
         DateTime DateCreated { get; set; }
         DateTime LastUpdated { get; set; }
+        string Type { get; }
     }
 }
