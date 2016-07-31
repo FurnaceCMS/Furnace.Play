@@ -16,21 +16,41 @@ namespace Furnace.Core.Node.Play
         {
             _nodeQueryHandeler = nodeQueryHandeler;
            
-            Get("/node/{nodeId}", parameters => Handel(parameters));
+            Get("/collection/{collectionId}", parameters => HandleCollection(parameters));
+            //Get("/relationship/{relationshipId}", parameters => HandleRelationship(parameters));
         }
 
-        private Response Handel(dynamic parameters)
+        //private Response HandleRelationship(dynamic parameters)
+        //{
+        //    try
+        //    {
+        //        var nodeQuery = new NodeQuery
+        //        {
+        //            NodeId = parameters.relationshipId
+        //        };
+
+        //        var nodeQueryResult = _nodeQueryHandeler.Handle(nodeQuery);
+
+        //        return "Relationship is " + nodeQueryResult;
+        //    }
+        //    catch (MetaCollectionNotFoundException)
+        //    {
+        //        return new NotFoundResponse();
+        //    }
+        //}
+
+        private Response HandleCollection(dynamic parameters)
         {
             try
             {
                 var nodeQuery = new NodeQuery
                 {
-                    NodeId = parameters.nodeId
+                    NodeId = parameters.collectionId
                 };
 
                 var nodeQueryResult = _nodeQueryHandeler.Handle(nodeQuery);
 
-                return "node is " + nodeQueryResult;
+                return "Collection is " + nodeQueryResult;
             }
             catch (MetaCollectionNotFoundException)
             {

@@ -2,9 +2,9 @@
 
 namespace Furnace.Core.Data.Play.Metas
 {
-    public interface IMetaRelationship
+    public interface IMetaRelationship : IMeta
     {
-        IMetaCollection Parent { get; set; }
-        IList<IMetaCollection> Children { get; set; }
+        IMetaCollection MasterMetaCollection { get; set; }
+        IList<IMetaCollection> RelatedMetaCollections { get; set; }
     }
 }

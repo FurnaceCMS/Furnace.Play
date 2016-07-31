@@ -3,15 +3,15 @@ using System.IO;
 using Furnace.Core.Data.Play.Metas;
 using Newtonsoft.Json;
 
-namespace Furnace.Core.Data.Play.Persistence
+namespace Furnace.Core.Data.Play.Persistence.JSON
 {
-    public class JSONPersistence: IPersistence
+    public class MetaCollectionPersistence: IPersistence<IMetaCollection>
     {
-        public void Save(IMetaCollection metaCollection)
+        public void Save(IMetaCollection data)
         {
-            var json = JsonConvert.SerializeObject(metaCollection);
+            var json = JsonConvert.SerializeObject(data);
 
-            File.WriteAllText($"metaCollections\\{metaCollection.Id}.json", json);
+            File.WriteAllText($"metaCollections\\{data.Id}.json", json);
         }
 
         public IMetaCollection Load(Guid id)

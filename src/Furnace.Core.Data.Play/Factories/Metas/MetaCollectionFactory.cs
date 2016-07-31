@@ -9,10 +9,10 @@ namespace Furnace.Core.Data.Play.Factories.Metas
 {
     public class MetaCollectionFactory : IMetaCollectionFactory
     {
-        private readonly IPersistence _persistence;
+        private readonly IPersistence<IMetaCollection> _persistence;
         public IDictionary<Type, IMetaFactory> TypedMetaFactories { get; set; }
 
-        public MetaCollectionFactory(IPersistence persistence)
+        public MetaCollectionFactory(IPersistence<IMetaCollection> persistence)
         {
             _persistence = persistence;
             BuildTypedMetaFactoriesDictionary();
