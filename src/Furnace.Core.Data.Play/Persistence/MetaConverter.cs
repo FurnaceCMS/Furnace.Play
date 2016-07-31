@@ -19,6 +19,12 @@ namespace Furnace.Core.Data.Play.Persistence
             if (jo["Type"].Value<string>() == typeof(StringMeta).FullName)
                 return jo.ToObject<StringMeta>(serializer);
 
+            if (jo["Type"].Value<string>() == typeof(IntMeta).FullName)
+                return jo.ToObject<IntMeta>(serializer);
+
+            if (jo["Type"].Value<string>() == typeof(DateTimeMeta).FullName)
+                return jo.ToObject<DateTimeMeta>(serializer);
+
             throw new NotSupportedException(string.Format("Type {0} unexpected.", objectType));
         }
 
