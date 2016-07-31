@@ -30,11 +30,6 @@
     "emitEntryPoint": true,
     "preserveCompilationContext": true
   },
-  "content": [
-    "Views",
-    "Content",
-    "bower_components"
-  ],
   "runtimeOptions": {
     "configProperties": {
       "System.GC.Server": true

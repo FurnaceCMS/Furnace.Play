@@ -9831,7 +9831,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "Furnace.Core.Data.Play",
+      "Furnace.Core.Data.Play >= 1.0.0-*",
       "Moq >= 4.6.36-alpha",
       "NUnit >= 3.4.1",
       "dotnet-test-nunit >= 3.4.0-beta-1"

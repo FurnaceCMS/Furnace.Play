@@ -5,9 +5,7 @@
     "Moq": "4.6.36-alpha",
     "dotnet-test-nunit": "3.4.0-beta-1",
     "NUnit": "3.4.1",
-    "Furnace.Core.Data.Play": {
-      "target" :  "project" 
-    }
+    "Furnace.Core.Data.Play": "1.0.0-*"
   },
   "testRunner": "nunit",
   "frameworks": {
