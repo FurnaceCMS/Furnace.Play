@@ -10,6 +10,7 @@ namespace Furnace.Core.Node.Play
         public void ConfigureContainer(Container container)
         {
             container.Register<IQueryHandler<NodeQuery, NodeQueryResult>, NodeQueryHandler>();
+            container.Register<IQueryHandler<NodeRelationshipQuery, NodeRelationshipQueryResult>, NodeRelationshipQueryHandler>();
         }
     }
 }

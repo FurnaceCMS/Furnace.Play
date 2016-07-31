@@ -10,7 +10,8 @@ namespace Furnace.Core.Data.Play.Persistence
     {
         public override bool CanConvert(Type objectType)
         {
-            return objectType.FullName == typeof(IMeta).FullName;
+            return objectType.FullName == typeof(IMeta).FullName ||
+                   objectType.FullName == typeof(IMetaCollection).FullName;
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
@@ -24,6 +25,9 @@ namespace Furnace.Core.Data.Play.Persistence
 
             if (jo["Type"].Value<string>() == typeof(DateTimeMeta).FullName)
                 return jo.ToObject<DateTimeMeta>(serializer);
+
+            if (jo["Type"].Value<string>() == typeof(MetaCollection).FullName)
+                return jo.ToObject<MetaCollection>(serializer);
 
             throw new NotSupportedException(string.Format("Type {0} unexpected.", objectType));
         }

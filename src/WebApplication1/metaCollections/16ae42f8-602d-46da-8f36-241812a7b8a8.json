@@ -1,8 +1,9 @@
 {
-	"Id": "16ae42f8-602d-46da-8f36-241812a7b8a8",
-	"Name": "test",
-	"DateCreated": "2016-07-30T10:57:18.9930692Z",
-	"LastUpdated": "2016-07-30T10:57:18.9930692Z",
+  "Id": "16ae42f8-602d-46da-8f36-241812a7b8a8",
+  "Name": "test",
+  "DateCreated": "2016-07-30T10:57:18.9930692Z",
+  "LastUpdated": "2016-07-30T10:57:18.9930692Z",
+  "Type": "Furnace.Core.Data.Play.Metas.MetaCollection",
   "Metas": [
     {
       "Id": "67514e68-4683-4579-a55b-89b8f551dbc1",

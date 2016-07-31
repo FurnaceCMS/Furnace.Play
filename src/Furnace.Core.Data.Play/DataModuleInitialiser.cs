@@ -12,6 +12,7 @@ namespace Furnace.Core.Data.Play
         public void ConfigureContainer(Container container)
         {
             container.Register<IMetaCollectionFactory, MetaCollectionFactory>();
+            container.Register<IMetaRelationshipFactory, MetaRelationshipFactory>();
             container.Register<IPersistence<IMetaCollection>, MetaCollectionPersistence>();
             container.Register<IPersistence<IMetaRelationship>, MetaRelationshipPersistence>();
         }
