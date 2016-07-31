@@ -9,7 +9,7 @@ namespace Furnace.Core.Data.Play.Persistence.JSON
     {
         public void Save(IMetaRelationship data)
         {
-            var json = JsonConvert.SerializeObject(data);
+            var json = JsonConvert.SerializeObject(data, new MetaConverter());
 
             File.WriteAllText($"metaRelationships\\{data.Id}.json", json);
         }

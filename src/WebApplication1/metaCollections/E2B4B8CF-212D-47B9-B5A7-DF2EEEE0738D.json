@@ -1,0 +1,17 @@
+{
+  "Id": "E2B4B8CF-212D-47B9-B5A7-DF2EEEE0738D",
+  "Name": "test",
+  "DateCreated": "2016-07-30T10:57:18.9930692Z",
+  "LastUpdated": "2016-07-30T10:57:18.9930692Z",
+  "Type": "Furnace.Core.Data.Play.Metas.MetaCollection",
+  "Metas": [
+    {
+      "Id": "F64B9A88-11E6-4669-A62A-B98732DE2541",
+      "Name": "Title",
+      "DateCreated": "2016-07-30T10:57:19.0263312Z",
+      "LastUpdated": "2016-07-30T10:57:19.0263312Z",
+      "Type": "Furnace.Core.Data.Play.Metas.Typed.StringMeta",
+      "Value": "stringValue"
+    }
+  ]
+}

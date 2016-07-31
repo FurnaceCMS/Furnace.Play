@@ -18,7 +18,21 @@ namespace Furnace.Core.Data.Play.Factories.Metas
 
         public IMetaRelationship GetMetaRelationship(Guid masterMetaId)
         {
-            return _persistence.Load(masterMetaId);
+            return PopulateRelationshipMetaCollections(_persistence.Load(masterMetaId));
+        }
+
+        private IMetaRelationship PopulateRelationshipMetaCollections(IMetaRelationship metaRelationship)
+        {
+            metaRelationship.MasterMetaCollection = _metaCollectionFactory.GetMetaCollection(metaRelationship.MasterMetaCollectionId);
+            foreach (var relatedId in metaRelationship.RelatedMetaCollectionIds)
+            {
+                var relatedMetaCollection = _metaCollectionFactory.GetMetaCollection(relatedId);
+                if(relatedMetaCollection == null)
+                    continue;
+                
+                metaRelationship.RelatedMetaCollections.Add(relatedMetaCollection);
+            }
+            return metaRelationship;
         }
 
         public IMetaRelationship CreateMetaRelationsip(Guid masterMetaId, Guid relatedMetaId)

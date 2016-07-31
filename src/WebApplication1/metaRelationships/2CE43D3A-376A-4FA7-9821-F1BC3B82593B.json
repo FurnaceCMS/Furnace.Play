@@ -1,108 +1,12 @@
 {
-  "Id": "16ae42f8-602d-46da-8f36-241812a7b8a8",
+  "Id": "2CE43D3A-376A-4FA7-9821-F1BC3B82593B",
   "Name": "test",
   "DateCreated": "2016-07-30T10:57:18.9930692Z",
   "LastUpdated": "2016-07-30T10:57:18.9930692Z",
   "Type": "Furnace.Core.Data.Play.Metas.MetaRelationship",
-  "MasterMetaCollection": {
-    "Id": "16ae42f8-602d-46da-8f36-241812a7b8a8",
-    "Name": "test",
-    "DateCreated": "2016-07-30T10:57:18.9930692Z",
-    "LastUpdated": "2016-07-30T10:57:18.9930692Z",
-    "Type": "Furnace.Core.Data.Play.Metas.MetaCollection",
-    "Metas": [
-      {
-        "Id": "67514e68-4683-4579-a55b-89b8f551dbc1",
-        "Name": "Title",
-        "DateCreated": "2016-07-30T10:57:19.0263312Z",
-        "LastUpdated": "2016-07-30T10:57:19.0263312Z",
-        "Type": "Furnace.Core.Data.Play.Metas.Typed.StringMeta",
-        "Value": "metaString1Value"
-      },
-      {
-        "Id": "8F16631A-5F34-4218-A5A5-B67FE2FD7128",
-        "Name": "Some Int Field",
-        "DateCreated": "2016-07-30T10:57:19.0263312Z",
-        "LastUpdated": "2016-07-30T10:57:19.0263312Z",
-        "Type": "Furnace.Core.Data.Play.Metas.Typed.IntMeta",
-        "Value": 1234
-      },
-      {
-        "Id": "A9E93730-D647-461D-8065-83A10FDF81DA",
-        "Name": "Some Date Field",
-        "DateCreated": "2016-07-30T10:57:19.0263312Z",
-        "LastUpdated": "2016-07-30T10:57:19.0263312Z",
-        "Type": "Furnace.Core.Data.Play.Metas.Typed.DateTimeMeta",
-        "Value": "1999-12-31T12:59:59.9999999Z"
-      }
-    ]
-  },
-  "RelatedMetaCollections": [
-    {
-      "Id": "16ae42f8-602d-46da-8f36-241812a7b8a8",
-      "Name": "test",
-      "DateCreated": "2016-07-30T10:57:18.9930692Z",
-      "LastUpdated": "2016-07-30T10:57:18.9930692Z",
-      "Type": "Furnace.Core.Data.Play.Metas.MetaCollection",
-      "Metas": [
-        {
-          "Id": "67514e68-4683-4579-a55b-89b8f551dbc1",
-          "Name": "Title",
-          "DateCreated": "2016-07-30T10:57:19.0263312Z",
-          "LastUpdated": "2016-07-30T10:57:19.0263312Z",
-          "Type": "Furnace.Core.Data.Play.Metas.Typed.StringMeta",
-          "Value": "metaString1Value"
-        },
-        {
-          "Id": "8F16631A-5F34-4218-A5A5-B67FE2FD7128",
-          "Name": "Some Int Field",
-          "DateCreated": "2016-07-30T10:57:19.0263312Z",
-          "LastUpdated": "2016-07-30T10:57:19.0263312Z",
-          "Type": "Furnace.Core.Data.Play.Metas.Typed.IntMeta",
-          "Value": 1234
-        },
-        {
-          "Id": "A9E93730-D647-461D-8065-83A10FDF81DA",
-          "Name": "Some Date Field",
-          "DateCreated": "2016-07-30T10:57:19.0263312Z",
-          "LastUpdated": "2016-07-30T10:57:19.0263312Z",
-          "Type": "Furnace.Core.Data.Play.Metas.Typed.DateTimeMeta",
-          "Value": "1999-12-31T12:59:59.9999999Z"
-        }
-      ]
-    },
-    {
-      "Id": "16ae42f8-602d-46da-8f36-241812a7b8a8",
-      "Name": "test",
-      "DateCreated": "2016-07-30T10:57:18.9930692Z",
-      "LastUpdated": "2016-07-30T10:57:18.9930692Z",
-      "Type": "Furnace.Core.Data.Play.Metas.MetaCollection",
-      "Metas": [
-        {
-          "Id": "67514e68-4683-4579-a55b-89b8f551dbc1",
-          "Name": "Title",
-          "DateCreated": "2016-07-30T10:57:19.0263312Z",
-          "LastUpdated": "2016-07-30T10:57:19.0263312Z",
-          "Type": "Furnace.Core.Data.Play.Metas.Typed.StringMeta",
-          "Value": "metaString1Value"
-        },
-        {
-          "Id": "8F16631A-5F34-4218-A5A5-B67FE2FD7128",
-          "Name": "Some Int Field",
-          "DateCreated": "2016-07-30T10:57:19.0263312Z",
-          "LastUpdated": "2016-07-30T10:57:19.0263312Z",
-          "Type": "Furnace.Core.Data.Play.Metas.Typed.IntMeta",
-          "Value": 1234
-        },
-        {
-          "Id": "A9E93730-D647-461D-8065-83A10FDF81DA",
-          "Name": "Some Date Field",
-          "DateCreated": "2016-07-30T10:57:19.0263312Z",
-          "LastUpdated": "2016-07-30T10:57:19.0263312Z",
-          "Type": "Furnace.Core.Data.Play.Metas.Typed.DateTimeMeta",
-          "Value": "1999-12-31T12:59:59.9999999Z"
-        }
-      ]
-    }
+  "MasterMetaCollectionId": "16ae42f8-602d-46da-8f36-241812a7b8a8",
+  "RelatedMetaCollectionIds": [
+    "C332D766-2409-421F-B425-2C07B2C613F8",
+    "E2B4B8CF-212D-47B9-B5A7-DF2EEEE0738D"
   ]
 }

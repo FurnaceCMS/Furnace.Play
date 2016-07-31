@@ -30,12 +30,12 @@ namespace Furnace.Core.Node.Play
                     MasterNodeId = parameters.relationshipId
                 };
 
-                var nodeQueryResult = _nodeRelationshipHandler.Handle(nodeRelationshipQuery);
+                var nodeRelationshipQueryResult = _nodeRelationshipHandler.Handle(nodeRelationshipQuery);
 
-                var output = new StringBuilder($"Meta Relationship - MasterMetaId:{nodeQueryResult.Relationship.MasterMetaCollection.Id}");
-                foreach (var relatedMeta in nodeQueryResult.Relationship.RelatedMetaCollections)
+                var output = new StringBuilder($"Meta Relationship - MasterMetaId:{nodeRelationshipQueryResult.Relationship.MasterMetaCollectionId}");
+                foreach (var relatedMetaId in nodeRelationshipQueryResult.Relationship.RelatedMetaCollectionIds)
                 {
-                    output.Append($", Related ID: {relatedMeta.Id}");
+                    output.Append($", Related ID: {relatedMetaId}");
                 }
 
                 return output.ToString();
