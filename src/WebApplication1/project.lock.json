@@ -3434,6 +3434,20 @@
           "netcoreapp1.0/Furnace.Core.Data.Play.dll": {}
         }
       },
+      "Furnace.Core.Nancy.Play/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v1.0",
+        "dependencies": {
+          "Furnace.Core.Play": "1.0.0",
+          "Nancy": "2.0.0-barneyrubble"
+        },
+        "compile": {
+          "netcoreapp1.0/Furnace.Core.Nancy.Play.dll": {}
+        },
+        "runtime": {
+          "netcoreapp1.0/Furnace.Core.Nancy.Play.dll": {}
+        }
+      },
       "Furnace.Core.Node.Play/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.0",
@@ -3463,20 +3477,6 @@
         },
         "runtime": {
           "netcoreapp1.0/Furnace.Core.Play.dll": {}
-        }
-      },
-      "Furnace.Core.Play.Nancy/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v1.0",
-        "dependencies": {
-          "Furnace.Core.Play": "1.0.0",
-          "Nancy": "2.0.0-barneyrubble"
-        },
-        "compile": {
-          "netcoreapp1.0/Furnace.Core.Play.Nancy.dll": {}
-        },
-        "runtime": {
-          "netcoreapp1.0/Furnace.Core.Play.Nancy.dll": {}
         }
       }
     }
@@ -9334,6 +9334,11 @@
       "path": "../Furnace.Core.Data.Play/project.json",
       "msbuildProject": "../Furnace.Core.Data.Play/Furnace.Core.Data.Play.xproj"
     },
+    "Furnace.Core.Nancy.Play/1.0.0": {
+      "type": "project",
+      "path": "../Furnace.Core.Nancy.Play/project.json",
+      "msbuildProject": "../Furnace.Core.Nancy.Play/Furnace.Core.Nancy.Play.xproj"
+    },
     "Furnace.Core.Node.Play/1.0.0": {
       "type": "project",
       "path": "../Furnace.Core.Node.Play/project.json",
@@ -9343,18 +9348,14 @@
       "type": "project",
       "path": "../Furnace.Core.Play/project.json",
       "msbuildProject": "../Furnace.Core.Play/Furnace.Core.Play.xproj"
-    },
-    "Furnace.Core.Play.Nancy/1.0.0": {
-      "type": "project",
-      "path": "../Furnace.Core.Play.Nancy/project.json",
-      "msbuildProject": "../Furnace.Core.Play.Nancy/Furnace.Core.Play.Nancy.xproj"
     }
   },
   "projectFileDependencyGroups": {
     "": [
+      "Furnace.Core.Data.Play >= 1.0.0-*",
+      "Furnace.Core.Nancy.Play >= 1.0.0-*",
       "Furnace.Core.Node.Play >= 1.0.0-*",
       "Furnace.Core.Play >= 1.0.0-*",
-      "Furnace.Core.Play.Nancy >= 1.0.0-*",
       "Microsoft.AspNetCore.Diagnostics >= 1.0.0",
       "Microsoft.AspNetCore.Server.IISIntegration >= 1.0.0",
       "Microsoft.AspNetCore.Server.Kestrel >= 1.0.0",

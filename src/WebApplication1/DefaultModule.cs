@@ -2,7 +2,11 @@
 
 namespace WebApplication1
 {
-    public class DefaultModule:FurnaceModule
+    public sealed class DefaultModule:FurnaceModule
     {
+        public DefaultModule()
+        {
+            Get("/", args => View["index"]);
+        }
     }
 }
