@@ -11,14 +11,14 @@ namespace Furnace.Core.Data.Play.Tests.Factories.Metas
     [TestFixture]
     public class MetaRelationshipFactoryTests
     {
-        private Mock<IPersistence<IMetaRelationship>> _mockPersistence;
+        private Mock<IPersistence<IMetaCollectionRelationship>> _mockPersistence;
         private Mock<IMetaCollectionFactory> _mockMetaCollectionFactory;
         private MetaRelationshipFactory _metaRelationshipFactory;
 
         [SetUp]
         public void FixtureSetup()
         {
-            _mockPersistence = new Mock<IPersistence<IMetaRelationship>>();
+            _mockPersistence = new Mock<IPersistence<IMetaCollectionRelationship>>();
             _mockMetaCollectionFactory = new Mock<IMetaCollectionFactory>();
             _metaRelationshipFactory = new MetaRelationshipFactory(_mockPersistence.Object, _mockMetaCollectionFactory.Object);
         }
@@ -28,7 +28,7 @@ namespace Furnace.Core.Data.Play.Tests.Factories.Metas
         {
             //arrange
             var guid = Guid.NewGuid();
-            _mockPersistence.Setup(x => x.Load(guid)).Returns(new MetaRelationship());
+            _mockPersistence.Setup(x => x.Load(guid)).Returns(new MetaCollectionRelationship());
 
             //act
             var result = _metaRelationshipFactory.GetMetaRelationship(guid);
@@ -43,7 +43,7 @@ namespace Furnace.Core.Data.Play.Tests.Factories.Metas
         {
             //arrange
             var guid = Guid.NewGuid();
-            _mockPersistence.Setup(x => x.Load(guid)).Returns(default(IMetaRelationship));
+            _mockPersistence.Setup(x => x.Load(guid)).Returns(default(IMetaCollectionRelationship));
 
             //act
             var result = _metaRelationshipFactory.GetMetaRelationship(guid);
@@ -61,7 +61,7 @@ namespace Furnace.Core.Data.Play.Tests.Factories.Metas
             var relatedMetaGuid = Guid.NewGuid();
             var masterMeta = GenerateMetaCollection(masterMetaGuid, "masterMeta");
             var relatedMeta = GenerateMetaCollection(relatedMetaGuid, "relatedMeta");
-            _mockPersistence.Setup(x => x.Load(masterMetaGuid)).Returns(default(IMetaRelationship));
+            _mockPersistence.Setup(x => x.Load(masterMetaGuid)).Returns(default(IMetaCollectionRelationship));
             _mockMetaCollectionFactory.Setup(x => x.GetMetaCollection(relatedMetaGuid)).Returns(relatedMeta);
             _mockMetaCollectionFactory.Setup(x => x.GetMetaCollection(masterMetaGuid)).Returns(masterMeta);
 
@@ -73,7 +73,7 @@ namespace Furnace.Core.Data.Play.Tests.Factories.Metas
             _mockPersistence.Verify(x => x.Load(masterMetaGuid), Times.Exactly(1));
             _mockMetaCollectionFactory.Verify(x => x.GetMetaCollection(masterMetaGuid), Times.Once);
             _mockMetaCollectionFactory.Verify(x => x.GetMetaCollection(relatedMetaGuid), Times.Once);
-            _mockPersistence.Verify(x => x.Save(It.IsAny<IMetaRelationship>()), Times.Once);
+            _mockPersistence.Verify(x => x.Save(It.IsAny<IMetaCollectionRelationship>()), Times.Once);
             Assert.AreEqual(result.MasterMetaCollection.Id, masterMetaGuid);
             Assert.IsTrue(result.RelatedMetaCollections.Any(x => x.Id == relatedMetaGuid));
         }
@@ -97,16 +97,16 @@ namespace Furnace.Core.Data.Play.Tests.Factories.Metas
             //assert
             Assert.IsNotNull(result);
             _mockPersistence.Verify(x => x.Load(masterMetaGuid), Times.Exactly(1));
-            _mockMetaCollectionFactory.Verify(x => x.GetMetaCollection(masterMetaGuid), Times.Never);
+            _mockMetaCollectionFactory.Verify(x => x.GetMetaCollection(masterMetaGuid), Times.Once);
             _mockMetaCollectionFactory.Verify(x => x.GetMetaCollection(relatedMetaGuid), Times.Once);
-            _mockPersistence.Verify(x => x.Save(It.IsAny<IMetaRelationship>()), Times.Once);
+            _mockPersistence.Verify(x => x.Save(It.IsAny<IMetaCollectionRelationship>()), Times.Once);
             Assert.AreEqual(result.MasterMetaCollection.Id, masterMetaGuid);
             Assert.IsTrue(result.RelatedMetaCollections.Any(x => x.Id == relatedMetaGuid));
         }
 
-        private IMetaRelationship GenerateMetaRelationship(IMetaCollection masterMetaCollection)
+        private IMetaCollectionRelationship GenerateMetaRelationship(IMetaCollection masterMetaCollection)
         {
-            return new MetaRelationship(masterMetaCollection);
+            return new MetaCollectionRelationship(masterMetaCollection);
         }
 
         private IMetaCollection GenerateMetaCollection(Guid id, string name)

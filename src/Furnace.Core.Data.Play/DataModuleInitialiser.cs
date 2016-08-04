@@ -14,7 +14,7 @@ namespace Furnace.Core.Data.Play
             container.Register<IMetaCollectionFactory, MetaCollectionFactory>();
             container.Register<IMetaRelationshipFactory, MetaRelationshipFactory>();
             container.Register<IPersistence<IMetaCollection>, MetaCollectionPersistence>();
-            container.Register<IPersistence<IMetaRelationship>, MetaRelationshipPersistence>();
+            container.Register<IPersistence<IMetaCollectionRelationship>, MetaRelationshipPersistence>();
         }
     }
 }

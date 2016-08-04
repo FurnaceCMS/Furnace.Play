@@ -4,7 +4,7 @@ using Furnace.Core.Data.Play.Persistence;
 
 namespace Furnace.Core.Data.Play.Metas
 {
-    public class MetaRelationship : IMetaRelationship
+    public class MetaCollectionRelationship : IMetaCollectionRelationship
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
@@ -20,15 +20,16 @@ namespace Furnace.Core.Data.Play.Metas
         [DontPersist]
         public IList<IMetaCollection> RelatedMetaCollections { get; set; }
         
-        public MetaRelationship()
+        public MetaCollectionRelationship()
         {
             RelatedMetaCollections = new List<IMetaCollection>();
             RelatedMetaCollectionIds = new List<Guid>();
         }
 
-        public MetaRelationship(IMetaCollection masterMetaCollection) : this()
+        public MetaCollectionRelationship(IMetaCollection masterMetaCollection) : this()
         {
             MasterMetaCollection = masterMetaCollection;
+            MasterMetaCollectionId = masterMetaCollection.Id;
         }
     }
 }

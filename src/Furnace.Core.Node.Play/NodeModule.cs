@@ -18,7 +18,7 @@ namespace Furnace.Core.Node.Play
             _nodeRelationshipHandler = nodeRelationshipHandler;
 
             Get("/collection/{collectionId}", parameters => HandleCollection(parameters));
-            Get("/relationship/{relationshipId}", parameters => HandleRelationship(parameters));
+            Get("/CollectionRelationship/{relationshipId}", parameters => HandleRelationship(parameters));
         }
 
         private Response HandleRelationship(dynamic parameters)
@@ -32,8 +32,8 @@ namespace Furnace.Core.Node.Play
 
                 var nodeRelationshipQueryResult = _nodeRelationshipHandler.Handle(nodeRelationshipQuery);
 
-                var output = new StringBuilder($"Meta Relationship - MasterMetaId:{nodeRelationshipQueryResult.Relationship.MasterMetaCollectionId}");
-                foreach (var relatedMetaId in nodeRelationshipQueryResult.Relationship.RelatedMetaCollectionIds)
+                var output = new StringBuilder($"Meta Relationship - MasterMetaId:{nodeRelationshipQueryResult.CollectionRelationship.MasterMetaCollectionId}");
+                foreach (var relatedMetaId in nodeRelationshipQueryResult.CollectionRelationship.RelatedMetaCollectionIds)
                 {
                     output.Append($", Related ID: {relatedMetaId}");
                 }

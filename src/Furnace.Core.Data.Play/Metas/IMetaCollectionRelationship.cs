@@ -4,7 +4,7 @@ using Furnace.Core.Data.Play.Persistence;
 
 namespace Furnace.Core.Data.Play.Metas
 {
-    public interface IMetaRelationship : IMeta
+    public interface IMetaCollectionRelationship : IMeta
     {
         [DontPersist]
         IMetaCollection MasterMetaCollection { get; set; }

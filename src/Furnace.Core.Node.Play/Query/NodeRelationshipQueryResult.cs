@@ -5,11 +5,11 @@ namespace Furnace.Core.Node.Play.Query
 {
     public class NodeRelationshipQueryResult : QueryResult
     {
-        public readonly IMetaRelationship Relationship;
+        public readonly IMetaCollectionRelationship CollectionRelationship;
 
-        public NodeRelationshipQueryResult(IMetaRelationship relationship)
+        public NodeRelationshipQueryResult(IMetaCollectionRelationship collectionRelationship)
         {
-            Relationship = relationship;
+            CollectionRelationship = collectionRelationship;
         }
     }
 }

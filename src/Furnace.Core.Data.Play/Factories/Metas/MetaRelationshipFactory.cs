@@ -7,35 +7,36 @@ namespace Furnace.Core.Data.Play.Factories.Metas
 {
     public class MetaRelationshipFactory : IMetaRelationshipFactory
     {
-        private readonly IPersistence<IMetaRelationship> _persistence;
+        private readonly IPersistence<IMetaCollectionRelationship> _persistence;
         private readonly IMetaCollectionFactory _metaCollectionFactory;
 
-        public MetaRelationshipFactory(IPersistence<IMetaRelationship> persistence, IMetaCollectionFactory metaCollectionFactory)
+        public MetaRelationshipFactory(IPersistence<IMetaCollectionRelationship> persistence, IMetaCollectionFactory metaCollectionFactory)
         {
             _persistence = persistence;
             _metaCollectionFactory = metaCollectionFactory;
         }
 
-        public IMetaRelationship GetMetaRelationship(Guid masterMetaId)
+        public IMetaCollectionRelationship GetMetaRelationship(Guid masterMetaId)
         {
-            return PopulateRelationshipMetaCollections(_persistence.Load(masterMetaId));
+            var metaCollectionRelationship = _persistence.Load(masterMetaId);
+            return metaCollectionRelationship != null ? PopulateRelationshipMetaCollections(metaCollectionRelationship) : null;
         }
 
-        private IMetaRelationship PopulateRelationshipMetaCollections(IMetaRelationship metaRelationship)
+        private IMetaCollectionRelationship PopulateRelationshipMetaCollections(IMetaCollectionRelationship metaCollectionRelationship)
         {
-            metaRelationship.MasterMetaCollection = _metaCollectionFactory.GetMetaCollection(metaRelationship.MasterMetaCollectionId);
-            foreach (var relatedId in metaRelationship.RelatedMetaCollectionIds)
+            metaCollectionRelationship.MasterMetaCollection = _metaCollectionFactory.GetMetaCollection(metaCollectionRelationship.MasterMetaCollectionId);
+            foreach (var relatedId in metaCollectionRelationship.RelatedMetaCollectionIds)
             {
                 var relatedMetaCollection = _metaCollectionFactory.GetMetaCollection(relatedId);
                 if(relatedMetaCollection == null)
                     continue;
                 
-                metaRelationship.RelatedMetaCollections.Add(relatedMetaCollection);
+                metaCollectionRelationship.RelatedMetaCollections.Add(relatedMetaCollection);
             }
-            return metaRelationship;
+            return metaCollectionRelationship;
         }
 
-        public IMetaRelationship CreateMetaRelationsip(Guid masterMetaId, Guid relatedMetaId)
+        public IMetaCollectionRelationship CreateMetaRelationsip(Guid masterMetaId, Guid relatedMetaId)
         {
             var metaRelationship = GetMetaRelationship(masterMetaId);
             if (metaRelationship == null)
@@ -46,7 +47,7 @@ namespace Furnace.Core.Data.Play.Factories.Metas
                     throw new MetaCollectionNotFoundException();
                 }
 
-                metaRelationship = new MetaRelationship(masterMetaCollection);
+                metaRelationship = new MetaCollectionRelationship(masterMetaCollection);
             }
 
             if (DoesMetaRelationshipExist(metaRelationship, relatedMetaId))
@@ -65,7 +66,7 @@ namespace Furnace.Core.Data.Play.Factories.Metas
             return metaRelationship;
         }
 
-        public IMetaRelationship DeleteMetaRelationsip(Guid masterMetaId, Guid relatedMetaId)
+        public IMetaCollectionRelationship DeleteMetaRelationsip(Guid masterMetaId, Guid relatedMetaId)
         {
             var metaRelationship = GetMetaRelationship(masterMetaId);
             if (metaRelationship == null)
@@ -83,9 +84,9 @@ namespace Furnace.Core.Data.Play.Factories.Metas
             return metaRelationship;
         }
 
-        private static bool DoesMetaRelationshipExist(IMetaRelationship metaRelationship, Guid relatedMetaId)
+        private static bool DoesMetaRelationshipExist(IMetaCollectionRelationship metaCollectionRelationship, Guid relatedMetaId)
         {
-            return metaRelationship.RelatedMetaCollections.Any(x => x.Id == relatedMetaId);
+            return metaCollectionRelationship.RelatedMetaCollections.Any(x => x.Id == relatedMetaId);
         }
     }
 }
