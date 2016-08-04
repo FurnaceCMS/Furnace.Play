@@ -28,5 +28,10 @@ namespace Furnace.Core.Data.Play.Persistence.JSON
                 throw new MetaCollectionNotFoundException();
             }
         }
+
+        public void Delete(Guid id)
+        {
+            File.Delete($"metaRelationships\\{id}.json");
+        }
     }
 }
