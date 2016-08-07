@@ -1,0 +1,17 @@
+{
+  "Id": "C332D766-2409-421F-B425-2C07B2C613F8",
+  "Name": "test",
+  "DateCreated": "2016-07-30T10:57:18.9930692Z",
+  "LastUpdated": "2016-07-30T10:57:18.9930692Z",
+  "Type": "Furnace.Core.Data.Play.Metas.MetaCollection",
+  "Metas": [
+    {
+      "Id": "6FEB8C70-E6FF-430F-834F-E77902979D43",
+      "Name": "Some Date Field",
+      "DateCreated": "2016-07-30T10:57:19.0263312Z",
+      "LastUpdated": "2016-07-30T10:57:19.0263312Z",
+      "Type": "Furnace.Core.Data.Play.Metas.Typed.DateTimeMeta",
+      "Value": "1999-12-31T12:59:59.9999999Z"
+    }
+  ]
+}

@@ -1,11 +1,11 @@
 ﻿using System;
-using Furnace.Core.Data.Play.Metas;
 
 namespace Furnace.Core.Data.Play.Persistence
 {
-    public interface IPersistence
+    public interface IPersistence<TPersistenceType>
     {
-        void Save(IMetaCollection metaCollection);
-        IMetaCollection Load(Guid id);
+        void Save(TPersistenceType data);
+        TPersistenceType Load(Guid id);
+        void Delete(Guid id);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Furnace.Core.Data.Play.Factories.Metas;
+using Furnace.Core.Data.Play.Metas;
 using Furnace.Core.Data.Play.Metas.Typed;
 using Furnace.Core.Data.Play.Persistence;
 using Moq;
@@ -21,7 +22,7 @@ namespace Furnace.Core.Data.Play.Tests.Factories.Metas
         [SetUp]
         public void FixtureSetup()
         {
-            var mockPersistence = new Mock<IPersistence>();
+            var mockPersistence = new Mock<IPersistence<IMetaCollection>>();
             _metaCollectionFactory = new MetaCollectionFactory(mockPersistence.Object);
         }
 

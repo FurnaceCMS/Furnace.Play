@@ -1,0 +1,33 @@
+{
+  "Id": "16ae42f8-602d-46da-8f36-241812a7b8a8",
+  "Name": "test",
+  "DateCreated": "2016-07-30T10:57:18.9930692Z",
+  "LastUpdated": "2016-07-30T10:57:18.9930692Z",
+  "Type": "Furnace.Core.Data.Play.Metas.MetaCollection",
+  "Metas": [
+    {
+      "Id": "67514e68-4683-4579-a55b-89b8f551dbc1",
+      "Name": "Title",
+      "DateCreated": "2016-07-30T10:57:19.0263312Z",
+      "LastUpdated": "2016-07-30T10:57:19.0263312Z",
+      "Type": "Furnace.Core.Data.Play.Metas.Typed.StringMeta",
+      "Value": "metaString1Value"
+    },
+    {
+      "Id": "8F16631A-5F34-4218-A5A5-B67FE2FD7128",
+      "Name": "Some Int Field",
+      "DateCreated": "2016-07-30T10:57:19.0263312Z",
+      "LastUpdated": "2016-07-30T10:57:19.0263312Z",
+      "Type": "Furnace.Core.Data.Play.Metas.Typed.IntMeta",
+      "Value": 1234
+    },
+    {
+      "Id": "A9E93730-D647-461D-8065-83A10FDF81DA",
+      "Name": "Some Date Field",
+      "DateCreated": "2016-07-30T10:57:19.0263312Z",
+      "LastUpdated": "2016-07-30T10:57:19.0263312Z",
+      "Type": "Furnace.Core.Data.Play.Metas.Typed.DateTimeMeta",
+      "Value": "1999-12-31T12:59:59.9999999Z"
+    }
+  ]
+}
