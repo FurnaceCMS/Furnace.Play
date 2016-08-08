@@ -1,13 +1,13 @@
 ﻿using Furnace.Core.Data.Play.Metas;
 using Furnace.Core.Play.Query;
 
-namespace Furnace.Core.Node.Play.Query
+namespace Furnace.Core.Node.Play.Queries.Relationships
 {
-    public class NodeRelationshipQueryResult : QueryResult
+    public class RelationshipQueryResult : QueryResult
     {
         public readonly IMetaCollectionRelationship CollectionRelationship;
 
-        public NodeRelationshipQueryResult(IMetaCollectionRelationship collectionRelationship)
+        public RelationshipQueryResult(IMetaCollectionRelationship collectionRelationship)
         {
             CollectionRelationship = collectionRelationship;
         }

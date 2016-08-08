@@ -1,0 +1,57 @@
+{
+  "Id": "C83C3052-2FF1-4E9D-9EE6-C0585F8E4424",
+  "Name": "test",
+  "DateCreated": "2016-07-30T10:57:18.9930692Z",
+  "LastUpdated": "2016-07-30T10:57:18.9930692Z",
+  "Type": "Furnace.Core.Data.Play.Metas.MetaCollection",
+  "Metas": [
+    {
+      "Id": "9B1A96C4-9BCD-4692-8942-3096FDE1C99F",
+      "Name": "title",
+      "DateCreated": "2016-07-30T10:57:19.0263312Z",
+      "LastUpdated": "2016-07-30T10:57:19.0263312Z",
+      "Type": "Furnace.Core.Data.Play.Metas.Typed.StringMeta",
+      "Value": "This is the title field"
+    },
+    {
+      "Id": "DDA838A9-44DC-49CE-8951-FE9BA8E556BB",
+      "Name": "metaTitle",
+      "DateCreated": "2016-07-30T10:57:19.0263312Z",
+      "LastUpdated": "2016-07-30T10:57:19.0263312Z",
+      "Type": "Furnace.Core.Data.Play.Metas.Typed.StringMeta",
+      "Value": "This is the meta title field"
+    },
+    {
+      "Id": "19642DFE-AB5D-41AC-9E13-F460A69642C2",
+      "Name": "metaDescription",
+      "DateCreated": "2016-07-30T10:57:19.0263312Z",
+      "LastUpdated": "2016-07-30T10:57:19.0263312Z",
+      "Type": "Furnace.Core.Data.Play.Metas.Typed.StringMeta",
+      "Value": "This is the meta description field"
+    },
+    {
+      "Id": "B6E0B31B-7631-49A8-B812-6C3A11556A70",
+      "Name": "metaKeywords",
+      "DateCreated": "2016-07-30T10:57:19.0263312Z",
+      "LastUpdated": "2016-07-30T10:57:19.0263312Z",
+      "Type": "Furnace.Core.Data.Play.Metas.Typed.StringMeta",
+      "Value": "This is the meta keywords value"
+    },
+    {
+      "Id": "7ECCD75B-E8C7-44BD-8C65-C49E5E376421",
+      "Name": "metaAuthor",
+      "DateCreated": "2016-07-30T10:57:19.0263312Z",
+      "LastUpdated": "2016-07-30T10:57:19.0263312Z",
+      "Type": "Furnace.Core.Data.Play.Metas.Typed.StringMeta",
+      "Value": "This is the meta author value"
+    },
+    {
+      "Id": "6301949F-7E5B-4B49-A069-E45FB1E585CC",
+      "Name": "body",
+      "DateCreated": "2016-07-30T10:57:19.0263312Z",
+      "LastUpdated": "2016-07-30T10:57:19.0263312Z",
+      "Type": "Furnace.Core.Data.Play.Metas.Typed.StringMeta",
+      "Value": "This is the body value"
+    }
+  ]
+}

@@ -1,36 +1,67 @@
-﻿using System.Text;
-using Furnace.Core.Data.Play.Persistence;
-using Furnace.Core.Node.Play.Query;
+﻿using Furnace.Core.Data.Play.Persistence;
 using Furnace.Core.Play.Module;
 using Furnace.Core.Play.Query;
 using Nancy;
+using System.Text;
+using Furnace.Core.Node.Play.Queries.Collections;
+using Furnace.Core.Node.Play.Queries.Patterns;
+using Furnace.Core.Node.Play.Queries.Relationships;
 
 namespace Furnace.Core.Node.Play
 {
     public sealed class NodeModule: FurnaceModule
     {
-        private readonly IQueryHandler<NodeQuery, NodeQueryResult> _nodeQueryHandeler;
-        private readonly IQueryHandler<NodeRelationshipQuery, NodeRelationshipQueryResult> _nodeRelationshipHandler;
+        private readonly IQueryHandler<CollectionQuery, CollectionQueryResult> _queryHandeler;
+        private readonly IQueryHandler<RelationshipQuery, RelationshipQueryResult> _relationshipHandler;
+        private readonly IQueryHandler<PatternQuery, PatternQueryResult> _patterHandler;
 
-        public NodeModule(IQueryHandler<NodeQuery, NodeQueryResult> nodeQueryHandeler, IQueryHandler<NodeRelationshipQuery, NodeRelationshipQueryResult> nodeRelationshipHandler)
+        public NodeModule(IQueryHandler<CollectionQuery, CollectionQueryResult> queryHandeler, IQueryHandler<RelationshipQuery, RelationshipQueryResult> relationshipHandler, IQueryHandler<PatternQuery, PatternQueryResult> patterHandler)
         {
-            _nodeQueryHandeler = nodeQueryHandeler;
-            _nodeRelationshipHandler = nodeRelationshipHandler;
+            _queryHandeler = queryHandeler;
+            _relationshipHandler = relationshipHandler;
+            _patterHandler = patterHandler;
 
             Get("/collection/{collectionId}", parameters => HandleCollection(parameters));
             Get("/CollectionRelationship/{relationshipId}", parameters => HandleRelationship(parameters));
+            Get("/PagePattern/{collectionId}", parameters => HandlePagePattern(parameters));
+        }
+
+        private Response HandlePagePattern(dynamic parameters)
+        {
+            try
+            {
+                var nodeQuery = new PatternQuery
+                {
+                    CollectionId = parameters.collectionId
+                };
+
+                var patternQueryResult = _patterHandler.Handle(nodeQuery);
+
+                var output = new StringBuilder($"Pattern - Id:{patternQueryResult.Pattern.Id}");
+                output.Append($", Title: {patternQueryResult.Pattern.Title}");
+                output.Append($", Body: {patternQueryResult.Pattern.Body}");
+                output.Append($", MetaAuthor: {patternQueryResult.Pattern.MetaAuthor}");
+                output.Append($", MetaDescription: {patternQueryResult.Pattern.MetaDescription}");
+                output.Append($", MetaKeywords: {patternQueryResult.Pattern.MetaKeywords}");
+                output.Append($", MetaTitle: {patternQueryResult.Pattern.MetaTitle}");
+                return output.ToString();
+            }
+            catch (MetaCollectionNotFoundException)
+            {
+                return new NotFoundResponse();
+            }
         }
 
         private Response HandleRelationship(dynamic parameters)
         {
             try
             {
-                var nodeRelationshipQuery = new NodeRelationshipQuery()
+                var nodeRelationshipQuery = new RelationshipQuery()
                 {
-                    MasterNodeId = parameters.relationshipId
+                    MasterMetaCollectionId = parameters.relationshipId
                 };
 
-                var nodeRelationshipQueryResult = _nodeRelationshipHandler.Handle(nodeRelationshipQuery);
+                var nodeRelationshipQueryResult = _relationshipHandler.Handle(nodeRelationshipQuery);
 
                 var output = new StringBuilder($"Meta Relationship - MasterMetaId:{nodeRelationshipQueryResult.CollectionRelationship.MasterMetaCollectionId}");
                 foreach (var relatedMetaId in nodeRelationshipQueryResult.CollectionRelationship.RelatedMetaCollectionIds)
@@ -54,12 +85,12 @@ namespace Furnace.Core.Node.Play
         {
             try
             {
-                var nodeQuery = new NodeQuery
+                var nodeQuery = new CollectionQuery
                 {
-                    NodeId = parameters.collectionId
+                    CollectionId = parameters.collectionId
                 };
 
-                var nodeQueryResult = _nodeQueryHandeler.Handle(nodeQuery);
+                var nodeQueryResult = _queryHandeler.Handle(nodeQuery);
 
                 return $"Collection is {nodeQueryResult}";
             }
