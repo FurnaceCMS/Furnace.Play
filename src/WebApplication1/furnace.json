@@ -1,0 +1,10 @@
+﻿{
+  "connectionStrings": {
+    "connection1": "CONN_STRING_IN_HERE",
+    "connection2": "CONN_STRING_IN_HERE",
+    "connection3": "CONN_STRING_IN_HERE"
+  },
+  "logging": {
+    "level": "DEBUG"
+  }
+}
