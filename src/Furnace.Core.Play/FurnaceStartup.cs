@@ -13,6 +13,7 @@ namespace Furnace.Core.Play
 
         public void Configure(IApplicationBuilder app)
         {
+            app.UseStaticFiles();
             app.UseFurnace();
         }
     }

@@ -7,6 +7,7 @@
   "dependencies": {
     "Microsoft.AspNetCore.Http.Abstractions": "1.0.0",
     "Microsoft.AspNetCore.Owin": "1.0.0",
+    "Microsoft.AspNetCore.StaticFiles": "1.0.0",
     "Nancy": "2.0.0-barneyrubble",
     "SimpleInjector": "3.2.0",
     "SimpleInjector.Integration.AspNetCore.Mvc": "3.2.3"
