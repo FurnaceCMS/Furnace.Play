@@ -1,8 +1,9 @@
-﻿using Furnace.Core.Play.Module;
+﻿using Furnace.Core.Nancy.Play;
+using Furnace.Core.Nancy.Play.Module;
 
 namespace WebApplication1
 {
-    public sealed class DefaultModule:FurnaceModule
+    public sealed class DefaultModule:NancyFurnaceModule
     {
         public DefaultModule()
         {

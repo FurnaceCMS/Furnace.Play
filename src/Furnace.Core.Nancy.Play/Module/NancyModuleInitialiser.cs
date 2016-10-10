@@ -2,7 +2,7 @@
 using Nancy.Owin;
 using SimpleInjector;
 
-namespace Furnace.Core.Nancy.Play
+namespace Furnace.Core.Nancy.Play.Module
 {
     public class NancyModuleInitialiser: IModuleInitialiser
     {
