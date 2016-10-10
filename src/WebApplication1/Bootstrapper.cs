@@ -12,11 +12,9 @@ namespace WebApplication1
 
         protected override void ConfigureConventions(NancyConventions conventions)
         {
+            conventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("bower_components", @"Content/bower_components"));
+            conventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("src", @"Content/bower_components/furnace-app/src"));
             base.ConfigureConventions(conventions);
-
-            conventions.StaticContentsConventions.Add(
-             StaticContentConventionBuilder.AddDirectory("assets", @"Content")
-         );
         }
     }
 }
