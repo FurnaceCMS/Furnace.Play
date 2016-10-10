@@ -40,7 +40,9 @@ namespace Furnace.Core.Play.Composition
 
         private static void InvokeModuleInitialisers(IEnumerable<Assembly> moduleAssemblies, Container container)
         {
-            var moduleInitialisers = from ti in GetFurnaceModuleInitialiser(moduleAssemblies)
+            var assemblies = moduleAssemblies as Assembly[] ?? moduleAssemblies.ToArray();
+
+            var moduleInitialisers = from ti in GetFurnaceModuleInitialiser(assemblies)
                 select ti.UnderlyingSystemType;
 
             foreach (var module in moduleInitialisers)
@@ -61,7 +63,8 @@ namespace Furnace.Core.Play.Composition
         private static void RegisterModules(IEnumerable<Assembly> moduleAssemblies, Container container)
         {
             var modules = from ti in GetFurnaceModules(moduleAssemblies)
-                             select ti.UnderlyingSystemType;
+                          where ti.IsClass && !ti.IsAbstract && !ti.IsInterface
+                          select ti.UnderlyingSystemType;
 
             foreach (var module in modules)
             {
@@ -71,7 +74,7 @@ namespace Furnace.Core.Play.Composition
 
         private static IEnumerable<TypeInfo> GetFurnaceMiddleware(IEnumerable<Assembly> assemblies)
         {
-            //Don't get Decorators as these should be regestered byt the module
+            //Don't get Decorators as these should be regestered by the module
             return from a in assemblies
                 from d in a.DefinedTypes
                 where d.ImplementedInterfaces.Contains(typeof(IFurnaceMiddleware))

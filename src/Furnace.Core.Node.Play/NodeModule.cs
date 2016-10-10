@@ -1,15 +1,15 @@
 ﻿using Furnace.Core.Data.Play.Persistence;
-using Furnace.Core.Play.Module;
 using Furnace.Core.Play.Query;
 using Nancy;
 using System.Text;
+using Furnace.Core.Nancy.Play.Module;
 using Furnace.Core.Node.Play.Queries.Collections;
 using Furnace.Core.Node.Play.Queries.Patterns;
 using Furnace.Core.Node.Play.Queries.Relationships;
 
 namespace Furnace.Core.Node.Play
 {
-    public sealed class NodeModule: FurnaceModule
+    public sealed class NodeModule: NancyFurnaceModule
     {
         private readonly IQueryHandler<CollectionQuery, CollectionQueryResult> _queryHandeler;
         private readonly IQueryHandler<RelationshipQuery, RelationshipQueryResult> _relationshipHandler;

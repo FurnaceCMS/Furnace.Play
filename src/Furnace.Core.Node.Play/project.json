@@ -6,6 +6,7 @@
 
   "dependencies": {
     "Furnace.Core.Data.Play": "1.0.0-*",
+    "Furnace.Core.Nancy.Play": "1.0.0-*",
     "Furnace.Core.Play": "1.0.0-*"
   },
 
