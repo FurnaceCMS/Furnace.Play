@@ -6,5 +6,10 @@
   },
   "logging": {
     "level": "DEBUG"
+  },
+  "metaTypeMaping":  {
+    "Furnace.Core.Data.Play.Metas.Typed.StringMeta": "string-meta",
+    "Furnace.Core.Data.Play.Metas.Typed.IntMeta": "integer-meta",
+    "Furnace.Core.Data.Play.Metas.Typed.DateTimeMeta": "date-time-meta"
   }
 }

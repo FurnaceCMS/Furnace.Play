@@ -3550,8 +3550,10 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
+          "Furnace.Core.Data.Play": "1.0.0",
           "Furnace.Core.Play": "1.0.0",
-          "Nancy": "2.0.0-barneyrubble"
+          "Nancy": "2.0.0-barneyrubble",
+          "Newtonsoft.Json": "9.0.1"
         },
         "compile": {
           "netcoreapp1.0/Furnace.Core.Nancy.Play.dll": {}

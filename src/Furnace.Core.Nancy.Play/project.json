@@ -5,6 +5,8 @@
   },
 
   "dependencies": {
+    "Newtonsoft.Json": "9.0.1",
+    "Furnace.Core.Data.Play": "1.0.0-*",
     "Furnace.Core.Play": "1.0.0-*",
     "Nancy": "2.0.0-barneyrubble"
   },

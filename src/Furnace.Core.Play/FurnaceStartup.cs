@@ -20,6 +20,7 @@ namespace Furnace.Core.Play
                 .AddEnvironmentVariables();
 
             _configurationRoot = builder.Build();
+
         }
 
         public void ConfigureServices(IServiceCollection services)

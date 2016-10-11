@@ -1,5 +1,4 @@
-﻿using Furnace.Core.Nancy.Play;
-using Furnace.Core.Nancy.Play.Module;
+﻿using Furnace.Core.Nancy.Play.Module;
 
 namespace WebApplication1
 {

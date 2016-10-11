@@ -7,7 +7,6 @@ namespace WebApplication1
     {
         public Bootstrapper(Container container) : base(container)
         {
-            var t = true;
         }
 
         protected override void ConfigureConventions(NancyConventions conventions)

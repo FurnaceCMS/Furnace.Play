@@ -30,7 +30,7 @@
     "emitEntryPoint": true,
     "preserveCompilationContext": true,
     "copyToOutput": {
-      "include": [ "Content", "Views" ]
+      "include": [ "Content", "Views", "furnace.json" ]
     }
   },
   "runtimeOptions": {
