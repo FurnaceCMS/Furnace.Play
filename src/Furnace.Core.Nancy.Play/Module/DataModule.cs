@@ -12,7 +12,7 @@ namespace Furnace.Core.Nancy.Play.Module
         public DataModule(IQueryHandler<MetaTypeMapingQuery, MetaTypeMapingQueryResult> metaTypeMapingQueryHandler)
         {
             _metaTypeMapingQueryHandler = metaTypeMapingQueryHandler;
-            Get("/api/v1/meta-type-maping", args => GetMetaTypeMaping());
+            Get("/api/v1/meta-type-maping", parameters => GetMetaTypeMaping());
         }
 
         private string GetMetaTypeMaping()

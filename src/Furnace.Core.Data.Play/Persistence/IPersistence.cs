@@ -7,5 +7,6 @@ namespace Furnace.Core.Data.Play.Persistence
         void Save(TPersistenceType data);
         TPersistenceType Load(Guid id);
         void Delete(Guid id);
+        
     }
 }

@@ -11,22 +11,28 @@ namespace Furnace.Core.Node.Play
 {
     public sealed class NodeModule: NancyFurnaceModule
     {
-        private readonly IQueryHandler<CollectionQuery, CollectionQueryResult> _queryHandeler;
+        private readonly IQueryHandler<CollectionQuery, CollectionQueryResult> _collectionQueryHandeler;
         private readonly IQueryHandler<RelationshipQuery, RelationshipQueryResult> _relationshipHandler;
         private readonly IQueryHandler<PatternQuery, PatternQueryResult> _patterHandler;
 
-        public NodeModule(IQueryHandler<CollectionQuery, CollectionQueryResult> queryHandeler, IQueryHandler<RelationshipQuery, RelationshipQueryResult> relationshipHandler, IQueryHandler<PatternQuery, PatternQueryResult> patterHandler)
+        public NodeModule(IQueryHandler<CollectionQuery, CollectionQueryResult> collectionQueryHandeler, IQueryHandler<RelationshipQuery, RelationshipQueryResult> relationshipHandler, IQueryHandler<PatternQuery, PatternQueryResult> patterHandler)
         {
-            _queryHandeler = queryHandeler;
+            _collectionQueryHandeler = collectionQueryHandeler;
             _relationshipHandler = relationshipHandler;
             _patterHandler = patterHandler;
 
-            Get("/collection/{collectionId}", parameters => HandleCollection(parameters));
-            Get("/CollectionRelationship/{relationshipId}", parameters => HandleRelationship(parameters));
-            Get("/PagePattern/{collectionId}", parameters => HandlePagePattern(parameters));
+            Get("/api/v1/meta-collections/" , parameters => GetCollections()));
+            Get("/collection/{collectionId}", parameters => GetCollectionById(parameters));
+            Get("/CollectionRelationship/{relationshipId}", parameters => GetRelationshipById(parameters));
+            Get("/PagePattern/{collectionId}", parameters => GetPagePatternById(parameters));
         }
 
-        private Response HandlePagePattern(dynamic parameters)
+        private Response GetCollections()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private Response GetPagePatternById(dynamic parameters)
         {
             try
             {
@@ -52,7 +58,7 @@ namespace Furnace.Core.Node.Play
             }
         }
 
-        private Response HandleRelationship(dynamic parameters)
+        private Response GetRelationshipById(dynamic parameters)
         {
             try
             {
@@ -81,7 +87,7 @@ namespace Furnace.Core.Node.Play
             }
         }
 
-        private Response HandleCollection(dynamic parameters)
+        private Response GetCollectionById(dynamic parameters)
         {
             try
             {
@@ -90,7 +96,7 @@ namespace Furnace.Core.Node.Play
                     CollectionId = parameters.collectionId
                 };
 
-                var nodeQueryResult = _queryHandeler.Handle(nodeQuery);
+                var nodeQueryResult = _collectionQueryHandeler.Handle(nodeQuery);
 
                 return $"Collection is {nodeQueryResult}";
             }
