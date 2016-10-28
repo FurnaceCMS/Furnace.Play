@@ -8,14 +8,14 @@ namespace Furnace.Core.Data.Play.LinqToMetas
 {
     public class MetasQueryable<T> : QueryableBase<T>
     {
-        private static IQueryExecutor CreateExecutor()
-        {
-            return new MetasQueryable();
-        }
-        public MetasQueryable()
-        : base (CreateExecutor())
-    {
-        }
+        //private static IQueryExecutor CreateExecutor()
+        //{
+        //    return new MetasQueryable();
+        //}
+
+        //public MetasQueryable() : base(CreateExecutor())
+        //{
+        //}
 
         public MetasQueryable(IQueryParser queryParser, IQueryExecutor executor)
             : base(new DefaultQueryProvider(typeof(MetasQueryable<>), queryParser, executor))

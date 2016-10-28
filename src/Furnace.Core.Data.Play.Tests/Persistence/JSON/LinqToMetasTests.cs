@@ -10,8 +10,8 @@ namespace Furnace.Core.Data.Play.Tests.Persistence.JSON
         [Test]
         public void SelectFrom()
         {
-            var query = from pn in MetasQueryFactory.Queryable<IMetaCollection>()
-                        select pn;
+            //var query = from pn in MetasQueryFactory.Queryable<IMetaCollection>()
+            //            select pn;
         }
     }
 }

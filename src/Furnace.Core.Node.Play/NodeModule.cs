@@ -21,7 +21,7 @@ namespace Furnace.Core.Node.Play
             _relationshipHandler = relationshipHandler;
             _patterHandler = patterHandler;
 
-            Get("/api/v1/meta-collections/" , parameters => GetCollections()));
+            Get("/api/v1/meta-collections/" , parameters => GetCollections());
             Get("/collection/{collectionId}", parameters => GetCollectionById(parameters));
             Get("/CollectionRelationship/{relationshipId}", parameters => GetRelationshipById(parameters));
             Get("/PagePattern/{collectionId}", parameters => GetPagePatternById(parameters));

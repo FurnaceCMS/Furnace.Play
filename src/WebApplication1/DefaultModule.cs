@@ -6,7 +6,9 @@ namespace WebApplication1
     {
         public DefaultModule()
         {
-            Get("/", args => View["index"]);
+            Get("/bob", args => View["index"]);
+
+            Get("/", args => View["index", this.Request.Url]);
         }
     }
 }

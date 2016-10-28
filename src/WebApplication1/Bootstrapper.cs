@@ -1,4 +1,6 @@
-﻿using Nancy.Conventions;
+﻿using Nancy;
+using Nancy.Configuration;
+using Nancy.Conventions;
 using SimpleInjector;
 
 namespace WebApplication1
@@ -14,6 +16,12 @@ namespace WebApplication1
             conventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("bower_components", @"Content/bower_components"));
             conventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("src", @"Content/bower_components/furnace-app/src"));
             base.ConfigureConventions(conventions);
+        }
+
+        public override void Configure(INancyEnvironment environment)
+        {
+            environment.Tracing(enabled: false, displayErrorTraces: true);
+            base.Configure(environment);
         }
     }
 }
